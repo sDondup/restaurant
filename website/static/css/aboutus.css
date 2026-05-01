@@ -1,0 +1,180 @@
+/* =========================
+   HERO
+========================= */
+.hero {
+  height: 60vh;
+  background: url("https://images.unsplash.com/photo-1551218808-94e220e084d2") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section {
+  padding: 70px 10%;
+}
+
+/* HEADINGS */
+h2 {
+  color: #2c6e49;
+  margin-bottom: 15px;
+  font-size: 32px;
+}
+
+/* =========================
+   GRID (WHO WE ARE / FOUNDER)
+========================= */
+.grid {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid .text,
+.grid .image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.grid img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   FOUNDER
+========================= */
+.founder {
+  background: #f9f9f9;
+}
+
+.signature {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #2c6e49;
+}
+
+/* =========================
+   🌄 MISSION (FINAL PREMIUM VERSION)
+========================= */
+.mission {
+  position: relative;
+  background: url("https://images.pexels.com/photos/36173262/pexels-photo-36173262.jpeg") center/cover no-repeat;
+  padding: 120px 10%;
+  text-align: center;
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 60px 0;
+}
+
+/* DARK OVERLAY */
+.mission::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+/* LOGO WATERMARK */
+.mission-logo {
+  position: absolute;
+  width: 180px;
+  opacity: 0.08;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* CONTENT */
+.mission-content {
+  position: relative;
+  z-index: 2;
+}
+
+.mission h2 {
+  font-size: 38px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.mission p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: auto;
+  opacity: 0.95;
+}
+
+/* =========================
+   VALUES SECTION
+========================= */
+.values {
+  text-align: center;
+  padding: 80px 10%;
+}
+
+.section-title {
+  font-size: 34px;
+  margin-bottom: 40px;
+  color: #2c6e49;
+}
+
+/* =========================
+   CARDS (FIXED - NO DUPLICATE)
+========================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* GLASS CARD STYLE */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card h3 {
+  color: #2c6e49;
+  margin-bottom: 10px;
+}

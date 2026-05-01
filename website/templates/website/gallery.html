@@ -1,0 +1,47 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<section class="gallery">
+  <h2 class="gallery-title">Our Gallery</h2>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-grid">
+    {% for img in images %}
+      <div class="gallery-item">
+        <img src="{{ img.image.url }}" alt="{{ img.title }}">
+      </div>
+    {% empty %}
+      <p>No images available</p>
+    {% endfor %}
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+
+    {% if images.has_previous %}
+      <a href="?page=1">First</a>
+      <a href="?page={{ images.previous_page_number }}">Prev</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ images.number }} of {{ images.paginator.num_pages }}
+    </span>
+
+    {% if images.has_next %}
+      <a href="?page={{ images.next_page_number }}">Next</a>
+      <a href="?page={{ images.paginator.num_pages }}">Last</a>
+    {% endif %}
+
+  </div>
+
+</section>
+
+{% endblock %}

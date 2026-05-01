@@ -1,0 +1,73 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | Tibetan Mom's Kitchen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+<section class="contact-section">
+
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you. Reach out anytime!</p>
+    </div>
+
+    <div class="contact-container">
+
+        <!-- FORM -->
+        <div class="contact-form">
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject">
+
+                <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info">
+
+            <h3>Get in Touch</h3>
+
+            <p>📞 +32 50 11 13 93</p>
+            <p>📧 ama.brugge@gmail.com</p>
+
+            <h3>Opening Hours</h3>
+            <p>Mon - Sun: 11:00 AM - 10:00 PM</p>
+
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+                <a class="insta" href="https://instagram.com/ama.brugge" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+
+                <a class="fb" href="https://facebook.com/amabrugge" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+
+                <a class="wa" href="https://wa.me/32491180010" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+
+                <a class="map" href="https://www.google.com/maps?q=Langestraat+94,+Brugge,+Belgium,+8000" target="_blank">
+                    <i class="fas fa-map-marker-alt"></i> Location
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

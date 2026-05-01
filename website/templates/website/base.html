@@ -1,0 +1,127 @@
+{% load i18n static %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>{% block title %}Tibetan Mom's Kitchen{% endblock %}</title>
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% block extra_css %}{% endblock %}
+
+<!-- =========================
+     SEO MULTILINGUAL TAGS
+========================= -->
+<link rel="alternate" hreflang="en" href="http://127.0.0.1:8000/en{{ request.get_full_path|slice:'3:' }}">
+<link rel="alternate" hreflang="nl" href="http://127.0.0.1:8000/nl{{ request.get_full_path|slice:'3:' }}">
+<link rel="alternate" hreflang="x-default" href="http://127.0.0.1:8000/en{{ request.get_full_path|slice:'3:' }}">
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+<header class="navbar">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+    <span>TIBETAN MOM'S KITCHEN</span>
+  </div>
+
+  <!-- MOBILE TOGGLE -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <ul id="nav-links">
+
+    <li>
+      <a href="{% url 'home' %}"
+         class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        {% trans "HOME" %}
+      </a>
+    </li>
+
+    <li>
+      <a href="{% url 'menu' %}"
+         class="{% if request.resolver_match.url_name == 'menu' %}active{% endif %}">
+        {% trans "MENU" %}
+      </a>
+    </li>
+
+    <li>
+      <a href="{% url 'about' %}"
+         class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">
+        {% trans "ABOUT US" %}
+      </a>
+    </li>
+
+    <li>
+      <a href="{% url 'gallery' %}"
+         class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">
+        {% trans "GALLERY" %}
+      </a>
+    </li>
+
+    <li>
+      <a href="{% url 'contact' %}"
+         class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+        {% trans "CONTACT" %}
+      </a>
+    </li>
+
+    <!-- =========================
+         LANGUAGE SWITCH (SAFE)
+    ========================= -->
+    <li class="lang-switch">
+
+      {% get_current_language as LANGUAGE_CODE %}
+
+      {% if LANGUAGE_CODE != 'en' %}
+        <a href="/en{{ request.get_full_path|slice:'3:' }}">
+          EN
+        </a>
+      {% else %}
+        <span class="active-lang">EN</span>
+      {% endif %}
+
+      <span class="lang-divider"></span>
+
+      {% if LANGUAGE_CODE != 'nl' %}
+        <a href="/nl{{ request.get_full_path|slice:'3:' }}">
+          NL
+        </a>
+      {% else %}
+        <span class="active-lang">NL</span>
+      {% endif %}
+
+    </li>
+
+  </ul>
+</header>
+
+<!-- =========================
+     PAGE CONTENT
+========================= -->
+<main class="container">
+  {% block body %}{% endblock %}
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer class="footer">
+  <p>&copy; 2026 Tibetan Mom's Kitchen. All Rights Reserved.</p>
+</footer>
+
+<!-- JS -->
+<script src="{% static 'js/base.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

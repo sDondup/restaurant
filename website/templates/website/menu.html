@@ -1,0 +1,102 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Menu | Tibetan Mom's Kitchen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<section class="menu-section">
+
+    <div class="menu-header">
+        <h1>Our Menu</h1>
+        <p>Authentic Tibetan flavors made with love</p>
+    </div>
+
+    <!-- MOMOS -->
+    <h2 class="menu-category">🥟 Momos</h2>
+
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <h3>Beef Momos</h3>
+            <p class="desc">8 pieces steamed dumplings</p>
+            <span class="price">€12.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Chicken Momos</h3>
+            <p class="desc">Juicy chicken filling</p>
+            <span class="price">€12.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Pork Momos</h3>
+            <p class="desc">Traditional Himalayan style</p>
+            <span class="price">€12.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Veg Momos</h3>
+            <p class="desc">Spinach & cheese stuffing</p>
+            <span class="price">€12.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Mix Momos</h3>
+            <p class="desc">Assorted flavors (4 pcs)</p>
+            <span class="price">€7.00</span>
+        </div>
+
+    </div>
+
+    <!-- FRIED RICE -->
+    <h2 class="menu-category">🍚 Fried Rice</h2>
+
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <h3>Veg Fried Rice</h3>
+            <span class="price">€10.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Chicken Fried Rice</h3>
+            <span class="price">€12.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Beef Fried Rice</h3>
+            <span class="price">€13.00</span>
+        </div>
+
+    </div>
+
+    <!-- DUMPLINGS -->
+    <h2 class="menu-category">🍗 Fried Dumplings</h2>
+
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <h3>Chicken Dumplings</h3>
+            <span class="price">€13.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Beef Dumplings</h3>
+            <span class="price">€13.00</span>
+        </div>
+
+        <div class="menu-card">
+            <h3>Veg Dumplings</h3>
+            <span class="price">€11.00</span>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

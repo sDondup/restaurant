@@ -1,0 +1,232 @@
+   /* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --primary: #2c6e49;
+  --dark: #1f1f1f;
+  --light: #f5f5f5;
+  --text: #444;
+  --white: #ffffff;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: 85%;
+  margin: auto;
+  padding: 40px 0;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.logo img {
+  height: 70px;   /* base size */
+  transform: scale(1.4);  /* visual zoom */
+  transform-origin: left center;
+}
+
+/* NAV LINKS */
+#nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+#nav-links li a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* HOVER */
+#nav-links li a:hover {
+  color: var(--primary);
+}
+
+/* ACTIVE LINK */
+#nav-links li a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+/* =========================
+   BUTTONS (GLOBAL)
+========================= */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #245c3d;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 8%;
+    background: white;
+    width: 200px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  #nav-links.show {
+    display: flex;
+  }
+}
+
+/* =========================
+   ACTIVE UNDERLINE EFFECT
+========================= */
+
+#nav-links li a {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+/* underline animation */
+#nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.3s ease;
+}
+
+/* hover underline */
+#nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* active page underline (Django active class) */
+#nav-links li a.active::after {
+  width: 100%;
+}
+
+/* keep active color */
+#nav-links li a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/*  Language switch */
+/* =========================
+   LANGUAGE TOGGLE (PRO STYLE)
+========================= */
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.lang-switch a {
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--dark);
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.lang-switch a:hover {
+  background: var(--light);
+}
+
+.active-lang {
+  background: var(--primary);
+  color: white !important;
+}
+
+.lang-divider {
+  width: 1px;
+  height: 14px;
+  background: #ddd;
+}

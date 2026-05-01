@@ -1,0 +1,102 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Home | Tibetan Mom's Kitchen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="{% static 'video/hero.mp4' %}" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="hero-overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+    <p class="tagline">Authentic Himalayan Taste</p>
+
+    <h2> WELCOME TO TIBETAN MOM'S KITCHEN</h2>
+
+    <p class="desc">
+      Located in the Netherlands, we are a premier Tibetan restaurant serving authentic Himalayan flavors,
+      handcrafted momos, and traditional cuisine made with love and heritage.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="{% url 'menu' %}" class="btn primary">Explore Menu</a>
+      <a href="{% url 'contact' %}" class="btn outline">Contact Us</a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ABOUT PREVIEW -->
+<section class="about-preview">
+  <div class="container grid">
+
+    <div class="text">
+      <h2>Our Story</h2>
+      <p>
+        Born from tradition and love, Tibetan Mom’s Kitchen carries the heart of the
+        Himalayas into every dish. Our recipes, passed down through generations,
+        celebrate rich flavors, warm hospitality, and a deep connection to culture
+        in every bite.
+      </p>
+
+      <a href="{% url 'about' %}" class="link">Learn More →</a>
+    </div>
+
+    <div class="image">
+      <img src="{% static 'images/family.jpg' %}" alt="Family">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+  <h2>Why Choose Us</h2>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <i class="fas fa-utensils feature-icon"></i>
+      <h3>Authentic Taste</h3>
+      <p>Traditional Tibetan recipes prepared fresh daily.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fas fa-leaf feature-icon"></i>
+      <h3>Fresh Ingredients</h3>
+      <p>We use high-quality and hygienic ingredients only.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fas fa-mug-hot feature-icon"></i>
+      <h3>Cozy Ambience</h3>
+      <p>A warm and welcoming dining experience.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BANNER -->
+<section class="cta">
+  <h2>Ready to Experience Real Tibetan Food?</h2>
+  <a href="{% url 'menu' %}" class="btn primary">View Menu</a>
+</section>
+
+{% endblock %}

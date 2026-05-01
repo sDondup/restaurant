@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "HOME"
+msgstr "HOME"
+
+msgid "MENU"
+msgstr "MENU"
+
+msgid "ABOUT US"
+msgstr "OVER ONS"
+
+msgid "CONTACT"
+msgstr "CONTACT"
+
+msgid "English"
+msgstr "Engels"
+
+msgid "Dutch"
+msgstr "Nederlands"
+
+msgid "About Us"
+msgstr "Over ons"
+
+msgid "Message from the Founder"
+msgstr "Bericht van de oprichter"
+
+msgid "Who We Are"
+msgstr "Wie wij zijn"
+
+msgid "Our Mission"
+msgstr "Onze missie"
+
+msgid "Our Values"
+msgstr "Onze waarden"
+
+msgid "Authenticity"
+msgstr "Authenticiteit"
+
+msgid "Quality"
+msgstr "Kwaliteit"
+
+msgid "Hospitality"
+msgstr "Gastvrijheid"
+
+msgid "Passion"
+msgstr "Passie"
+
+msgid "We treat every guest like family."
+msgstr "We behandelen elke gast als familie."
+
+msgid "At Tibetan Mom’s Kitchen, we serve more than food — we serve tradition. Inspired by authentic Himalayan home cooking, our restaurant offers a warm dining experience with rich flavors, handcrafted momos, and soulful Tibetan cuisine."
+msgstr "Bij Tibetan Mom’s Kitchen serveren we meer dan eten — we serveren traditie. Geïnspireerd door authentiek Himalaya huisgemaakt eten..."

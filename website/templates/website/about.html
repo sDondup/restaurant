@@ -1,0 +1,126 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "About Us" %} | Tibetan Mom's Kitchen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/aboutus.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+
+    <h1>{% trans "About Us" %}</h1>
+
+    <p>
+      {% trans "At Tibetan Mom’s Kitchen, we serve more than food — we serve tradition. Inspired by authentic Himalayan home cooking, our restaurant offers a warm dining experience with rich flavors, handcrafted momos, and soulful Tibetan cuisine." %}
+    </p>
+
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section founder">
+  <div class="grid">
+
+    <div class="image">
+      <img src="{% static 'images/founter.jpg' %}" alt="Founder">
+    </div>
+
+    <div class="text">
+
+      <h2>{% trans "Message from the Founder" %}</h2>
+
+      <p>
+        {% trans "Tibetan Mom’s Kitchen was born from a deep love for Himalayan culture and authentic home-style food." %}
+      </p>
+
+      <p>
+        {% trans "Our mission is to bring warmth, tradition, and unforgettable flavors to every plate we serve." %}
+      </p>
+
+      <p class="signature">
+        {% trans "— Founder, Tibetan Mom's Kitchen" %}
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="section">
+  <div class="grid">
+
+    <div class="text">
+
+      <h2>{% trans "Who We Are" %}</h2>
+
+      <p>{% trans "We are a passionate team dedicated to authentic Tibetan cuisine and warm hospitality." %}</p>
+
+      <p>{% trans "Every dish is crafted with tradition, care, and love." %}</p>
+
+    </div>
+
+    <div class="image">
+      <img src="{% static 'images/whoweare.jpg' %}" alt="Who we are">
+    </div>
+
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section mission">
+
+  <div class="mission-content">
+
+    <h2>{% trans "Our Mission" %}</h2>
+
+    <p>
+      {% trans "To serve authentic Himalayan flavors while creating a warm and memorable dining experience." %}
+    </p>
+
+  </div>
+
+</section>
+
+<!-- VALUES -->
+<section class="section values">
+
+  <h2 class="section-title">{% trans "Our Values" %}</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <i class="fas fa-scroll card-icon"></i>
+      <h3>{% trans "Authenticity" %}</h3>
+      <p>{% trans "Traditional recipes passed through generations." %}</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-star card-icon"></i>
+      <h3>{% trans "Quality" %}</h3>
+      <p>{% trans "Fresh ingredients and high standards." %}</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-handshake card-icon"></i>
+      <h3>{% trans "Hospitality" %}</h3>
+      <p>{% trans "We treat every guest like family." %}</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-heart card-icon"></i>
+      <h3>{% trans "Passion" %}</h3>
+      <p>{% trans "Love and care in every dish." %}</p>
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
