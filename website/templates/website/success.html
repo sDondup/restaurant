@@ -1,0 +1,150 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}Reservation Confirmed | Tibetan Mom's Kitchen{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="success-box">
+
+  <h2>Reservation Confirmed 🎉</h2>
+  <p>Thank you! Your booking is saved in our database.</p>
+
+  <div class="reservation-card">
+
+    <h3>Your Booking Details</h3>
+
+    <p><strong>Name:</strong> {{ reservation.name }}</p>
+    <p><strong>Phone:</strong> {{ reservation.phone }}</p>
+    <p><strong>Date:</strong> {{ reservation.date }}</p>
+    <p><strong>Time:</strong> {{ reservation.time }}</p>
+    <p><strong>Guests:</strong> {{ reservation.guests }}</p>
+
+  </div>
+
+</div>
+<style>
+    /* =========================
+   PAGE BACKGROUND
+========================= */
+body {
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =========================
+   SUCCESS CONTAINER
+========================= */
+.success-box {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* =========================
+   TITLE
+========================= */
+.success-box h2 {
+  font-size: 34px;
+  color: #16a34a;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Subtitle text */
+.success-box p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   BOOKING CARD
+========================= */
+.reservation-card {
+  width: 420px;
+  max-width: 95%;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+
+  /* modern shadow */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+  border-top: 5px solid #f59e0b;
+
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+/* Hover effect */
+.reservation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   CARD TITLE
+========================= */
+.reservation-card h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #b45309;
+  text-align: center;
+}
+
+/* =========================
+   DETAILS TEXT
+========================= */
+.reservation-card p {
+  font-size: 15px;
+  color: #333;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+/* Label styling */
+.reservation-card p strong {
+  color: #111;
+  width: 90px;
+  display: inline-block;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+.success-box {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 500px) {
+  .success-box h2 {
+    font-size: 26px;
+  }
+
+  .reservation-card {
+    padding: 20px;
+  }
+}
+</style>
+{% endblock %}

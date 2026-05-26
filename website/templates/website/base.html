@@ -61,6 +61,13 @@
       </a>
     </li>
 
+      <li>
+      <a href="{% url 'reservation' %}"
+         class="{% if request.resolver_match.url_name == 'reservation' %}active{% endif %}">
+        {% trans "RESERVATION" %}
+      </a>
+    </li>
+
     <li>
       <a href="{% url 'gallery' %}"
          class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">

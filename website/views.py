@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Gallery
+from .models import Gallery, Reservation
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
 def home(request):
@@ -22,3 +22,31 @@ def gallery(request):
     images = paginator.get_page(page_number)
 
     return render(request, 'website/gallery.html', {'images': images})
+
+def reservation_view(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        date = request.POST.get("date")
+        time = request.POST.get("time")
+        guests = request.POST.get("guests")
+
+        Reservation.objects.create(
+            name=name,
+            phone=phone,
+            date=date,
+            time=time,
+            guests=guests
+        )
+
+        return redirect('reservation_success')
+
+    return render(request, 'website/reservation.html')
+
+
+def reservation_success(request):
+    reservation = Reservation.objects.latest('id')  # last booking
+
+    return render(request, 'website/success.html', {
+        'reservation': reservation
+    })
