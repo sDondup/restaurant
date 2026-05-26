@@ -1,102 +1,389 @@
-{% extends "website/base.html" %}
+{% extends 'website/base.html' %}
 {% load static %}
 
-{% block title %}Menu | Tibetan Mom's Kitchen{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/menu.css' %}">
-{% endblock %}
+{% block title %}Menu{% endblock %}
 
 {% block body %}
 
-<section class="menu-section">
+<style>
 
-    <div class="menu-header">
-        <h1>Our Menu</h1>
-        <p>Authentic Tibetan flavors made with love</p>
-    </div>
+/* =========================
+   MENU PAGE
+========================= */
+.menu-page {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 20px;
+}
 
-    <!-- MOMOS -->
-    <h2 class="menu-category">🥟 Momos</h2>
+/* =========================
+   TITLE
+========================= */
+.page-title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: #404042;
+}
+
+/* =========================
+   GRID
+========================= */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+/* =========================
+   CARD
+========================= */
+.menu-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-8px);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.menu-card img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    background: #f5f5f5;
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.menu-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.menu-content h3 {
+    font-size: 24px;
+    color: #222;
+    margin: 0;
+}
+
+/* =========================
+   IMAGE MODAL
+========================= */
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.96);
+    justify-content: center;
+    align-items: center;
+}
+
+/* MODAL IMAGE */
+.image-modal img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    user-select: none;
+    touch-action: pinch-zoom;
+}
+
+/* CLOSE BUTTON */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 42px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* DESKTOP NAV BUTTONS */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: none;
+    font-size: 40px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 992px) {
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu-card img {
+        max-height: 400px;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .menu-page {
+        padding: 15px 10px;
+    }
+
+    .page-title {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .menu-card img {
+        max-height: 300px;
+        padding: 8px;
+    }
+
+    .menu-content {
+        padding: 14px;
+    }
+
+    .menu-content h3 {
+        font-size: 18px;
+    }
+
+    .close-modal {
+        font-size: 32px;
+        right: 15px;
+    }
+
+    /* HIDE BUTTONS ON MOBILE */
+    .nav-btn {
+        display: none;
+    }
+
+}
+
+</style>
+
+<div class="menu-page">
+
+    <h1 class="page-title">Our Menu</h1>
 
     <div class="menu-grid">
 
-        <div class="menu-card">
-            <h3>Beef Momos</h3>
-            <p class="desc">8 pieces steamed dumplings</p>
-            <span class="price">€12.00</span>
-        </div>
+        {% for item in menus %}
 
         <div class="menu-card">
-            <h3>Chicken Momos</h3>
-            <p class="desc">Juicy chicken filling</p>
-            <span class="price">€12.00</span>
+
+            <img src="{{ item.image.url }}"
+                 alt="{{ item.title }}"
+                 onclick="openModal({{ forloop.counter0 }})">
+
+            <div class="menu-content">
+                <h3>{{ item.title }}</h3>
+            </div>
+
         </div>
 
-        <div class="menu-card">
-            <h3>Pork Momos</h3>
-            <p class="desc">Traditional Himalayan style</p>
-            <span class="price">€12.00</span>
-        </div>
-
-        <div class="menu-card">
-            <h3>Veg Momos</h3>
-            <p class="desc">Spinach & cheese stuffing</p>
-            <span class="price">€12.00</span>
-        </div>
-
-        <div class="menu-card">
-            <h3>Mix Momos</h3>
-            <p class="desc">Assorted flavors (4 pcs)</p>
-            <span class="price">€7.00</span>
-        </div>
+        {% endfor %}
 
     </div>
 
-    <!-- FRIED RICE -->
-    <h2 class="menu-category">🍚 Fried Rice</h2>
+</div>
 
-    <div class="menu-grid">
+<!-- =========================
+     IMAGE POPUP
+========================= -->
+<div class="image-modal" id="imageModal">
 
-        <div class="menu-card">
-            <h3>Veg Fried Rice</h3>
-            <span class="price">€10.00</span>
-        </div>
+    <span class="close-modal" onclick="closeModal()">&times;</span>
 
-        <div class="menu-card">
-            <h3>Chicken Fried Rice</h3>
-            <span class="price">€12.00</span>
-        </div>
+    <!-- Desktop Buttons -->
+    <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
 
-        <div class="menu-card">
-            <h3>Beef Fried Rice</h3>
-            <span class="price">€13.00</span>
-        </div>
+    <img id="modalImage">
 
-    </div>
+    <button class="nav-btn next-btn" onclick="nextImage()">❯</button>
 
-    <!-- DUMPLINGS -->
-    <h2 class="menu-category">🍗 Fried Dumplings</h2>
+</div>
 
-    <div class="menu-grid">
+<script>
 
-        <div class="menu-card">
-            <h3>Chicken Dumplings</h3>
-            <span class="price">€13.00</span>
-        </div>
+/* =========================
+   IMAGE LIST
+========================= */
 
-        <div class="menu-card">
-            <h3>Beef Dumplings</h3>
-            <span class="price">€13.00</span>
-        </div>
+const images = [
+    {% for item in menus %}
+        "{{ item.image.url }}",
+    {% endfor %}
+];
 
-        <div class="menu-card">
-            <h3>Veg Dumplings</h3>
-            <span class="price">€11.00</span>
-        </div>
+let currentIndex = 0;
 
-    </div>
+/* =========================
+   OPEN MODAL
+========================= */
 
-</section>
+function openModal(index) {
+
+    currentIndex = index;
+
+    document.getElementById("imageModal").style.display = "flex";
+
+    document.getElementById("modalImage").src = images[currentIndex];
+}
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal() {
+
+    document.getElementById("imageModal").style.display = "none";
+
+}
+
+/* =========================
+   NEXT IMAGE
+========================= */
+
+function nextImage() {
+
+    currentIndex = (currentIndex + 1) % images.length;
+
+    document.getElementById("modalImage").src = images[currentIndex];
+
+}
+
+/* =========================
+   PREVIOUS IMAGE
+========================= */
+
+function prevImage() {
+
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+    document.getElementById("modalImage").src = images[currentIndex];
+
+}
+
+/* =========================
+   CLICK OUTSIDE CLOSE
+========================= */
+
+window.addEventListener("click", function(event) {
+
+    const modal = document.getElementById("imageModal");
+
+    if (event.target == modal) {
+        closeModal();
+    }
+
+});
+
+/* =========================
+   KEYBOARD SUPPORT
+========================= */
+
+document.addEventListener("keydown", function(e) {
+
+    const modal = document.getElementById("imageModal");
+
+    if (modal.style.display === "flex") {
+
+        if (e.key === "ArrowRight") {
+            nextImage();
+        }
+
+        if (e.key === "ArrowLeft") {
+            prevImage();
+        }
+
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    }
+
+});
+
+/* =========================
+   UNIVERSAL TOUCH SWIPE
+========================= */
+
+let startX = 0;
+let endX = 0;
+
+const modal = document.getElementById("imageModal");
+
+/* TOUCH START */
+modal.addEventListener("touchstart", function(e) {
+
+    startX = e.touches[0].clientX;
+
+}, { passive: true });
+
+/* TOUCH END */
+modal.addEventListener("touchend", function(e) {
+
+    endX = e.changedTouches[0].clientX;
+
+    handleSwipe();
+
+}, { passive: true });
+
+/* SWIPE DETECTION */
+function handleSwipe() {
+
+    const diff = startX - endX;
+
+    /* LEFT SWIPE */
+    if (diff > 50) {
+        nextImage();
+    }
+
+    /* RIGHT SWIPE */
+    if (diff < -50) {
+        prevImage();
+    }
+
+}
+
+</script>
 
 {% endblock %}

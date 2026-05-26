@@ -97,6 +97,10 @@ body {
   display: none;
   font-size: 26px;
   cursor: pointer;
+  color: white;
+  background: #404042;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 /* =========================
@@ -136,17 +140,18 @@ body {
     display: block;
   }
 
-  #nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 8%;
-    background: white;
-    width: 200px;
-    padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
+#nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 8%;
+  background: #404042;
+  width: 220px;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
 
   #nav-links.show {
     display: flex;

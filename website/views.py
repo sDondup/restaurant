@@ -1,4 +1,4 @@
-from .models import Gallery, Reservation
+from .models import Gallery, Reservation, MenuItem
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
@@ -6,7 +6,8 @@ def home(request):
     return render(request, 'website/index.html')
 
 def menu(request):
-    return render(request, 'website/menu.html')
+    menus = MenuItem.objects.all().order_by('-created_at')
+    return render(request, 'website/menu.html', {'menus': menus})
 
 def about(request):
     return render(request, 'website/about.html')
