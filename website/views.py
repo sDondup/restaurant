@@ -15,7 +15,7 @@ def contact(request):
     return render(request, 'website/contact.html')
 
 def gallery(request):
-    images_list = Gallery.objects.all()
+    images_list = Gallery.objects.all().order_by('title')
 
     paginator = Paginator(images_list, 12)  # 👈 10 images per page
     page_number = request.GET.get('page')
@@ -42,7 +42,6 @@ def reservation_view(request):
         return redirect('reservation_success')
 
     return render(request, 'website/reservation.html')
-
 
 def reservation_success(request):
     reservation = Reservation.objects.latest('id')  # last booking
