@@ -112,7 +112,7 @@
     z-index: 10000;
 }
 
-/* DESKTOP NAV BUTTONS */
+/* DESKTOP BUTTONS */
 .nav-btn {
     position: absolute;
     top: 50%;
@@ -191,7 +191,7 @@
         right: 15px;
     }
 
-    /* HIDE BUTTONS ON MOBILE */
+    /* HIDE ARROWS ON MOBILE */
     .nav-btn {
         display: none;
     }
@@ -227,13 +227,13 @@
 </div>
 
 <!-- =========================
-     IMAGE POPUP
+     MODAL
 ========================= -->
 <div class="image-modal" id="imageModal">
 
     <span class="close-modal" onclick="closeModal()">&times;</span>
 
-    <!-- Desktop Buttons -->
+    <!-- Desktop Navigation -->
     <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
 
     <img id="modalImage">
@@ -242,17 +242,26 @@
 
 </div>
 
+<!-- =========================
+     IMAGE DATA
+========================= -->
+<script id="menu-images-data" type="application/json">
+[
+    {% for item in menus %}
+        "{{ item.image.url }}"{% if not forloop.last %},{% endif %}
+    {% endfor %}
+]
+</script>
+
 <script>
 
 /* =========================
-   IMAGE LIST
+   IMAGE ARRAY
 ========================= */
 
-const images = [
-    {% for item in menus %}
-        "{{ item.image.url }}",
-    {% endfor %}
-];
+const images = JSON.parse(
+    document.getElementById("menu-images-data").textContent
+);
 
 let currentIndex = 0;
 
@@ -267,6 +276,7 @@ function openModal(index) {
     document.getElementById("imageModal").style.display = "flex";
 
     document.getElementById("modalImage").src = images[currentIndex];
+
 }
 
 /* =========================
@@ -304,14 +314,14 @@ function prevImage() {
 }
 
 /* =========================
-   CLICK OUTSIDE CLOSE
+   CLOSE WHEN CLICK OUTSIDE
 ========================= */
 
 window.addEventListener("click", function(event) {
 
     const modal = document.getElementById("imageModal");
 
-    if (event.target == modal) {
+    if (event.target === modal) {
         closeModal();
     }
 
@@ -338,6 +348,7 @@ document.addEventListener("keydown", function(e) {
         if (e.key === "Escape") {
             closeModal();
         }
+
     }
 
 });

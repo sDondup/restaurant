@@ -24,7 +24,7 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} | {self.date} | {self.time} | {self.guests} Guests"
 
 
 class MenuItem(models.Model):

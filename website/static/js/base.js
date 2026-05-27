@@ -35,3 +35,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("show");
+}
+
+/* CLOSE MENU WHEN CLICKING OUTSIDE */
+document.addEventListener("click", function (event) {
+
+    const menu = document.getElementById("nav-links");
+    const toggle = document.querySelector(".menu-toggle");
+
+    const isClickInsideMenu = menu.contains(event.target);
+    const isClickOnToggle = toggle.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnToggle) {
+        menu.classList.remove("show");
+    }
+
+});

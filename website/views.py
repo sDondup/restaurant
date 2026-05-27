@@ -24,15 +24,24 @@ def gallery(request):
 
     return render(request, 'website/gallery.html', {'images': images})
 
+from django.shortcuts import render, redirect
+from urllib.parse import quote
+
+from .models import Reservation
+
+
 def reservation_view(request):
+
     if request.method == "POST":
+
         name = request.POST.get("name")
         phone = request.POST.get("phone")
         date = request.POST.get("date")
         time = request.POST.get("time")
         guests = request.POST.get("guests")
 
-        Reservation.objects.create(
+        # SAVE TO DATABASE
+        reservation = Reservation.objects.create(
             name=name,
             phone=phone,
             date=date,
@@ -40,9 +49,41 @@ def reservation_view(request):
             guests=guests
         )
 
-        return redirect('reservation_success')
+        # SAVE ID FOR SUCCESS PAGE
+        request.session["reservation_id"] = reservation.id
+
+        # WHATSAPP MESSAGE
+        whatsapp_message = quote(
+            f"🍽 New Reservation Request\n\n"
+            f"Name: {name}\n"
+            f"Phone: {phone}\n"
+            f"Date: {date}\n"
+            f"Time: {time}\n"
+            f"Guests: {guests}"
+        )
+
+        # OWNER NUMBER
+        whatsapp_url = (
+            f"https://wa.me/919004280887?text={whatsapp_message}"
+        )
+
+        # REDIRECT TO WHATSAPP
+        return redirect(whatsapp_url)
 
     return render(request, 'website/reservation.html')
+
+
+def reservation_success(request):
+
+    reservation_id = request.session.get("reservation_id")
+
+    reservation = Reservation.objects.get(id=reservation_id)
+
+    return render(
+        request,
+        'website/reservation_success.html',
+        {"reservation": reservation}
+    )
 
 def reservation_success(request):
     reservation = Reservation.objects.latest('id')  # last booking

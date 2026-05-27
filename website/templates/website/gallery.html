@@ -12,15 +12,19 @@
 <section class="gallery">
   <h2 class="gallery-title">Our Gallery</h2>
 
-  <!-- GALLERY GRID -->
+  <!-- GRID -->
   <div class="gallery-grid">
+
     {% for img in images %}
       <div class="gallery-item">
-        <img src="{{ img.image.url }}" alt="{{ img.title }}">
+        <img src="{{ img.image.url }}"
+             alt="{{ img.title }}"
+             onclick="openModal({{ forloop.counter0 }})">
       </div>
     {% empty %}
       <p>No images available</p>
     {% endfor %}
+
   </div>
 
   <!-- PAGINATION -->
@@ -41,7 +45,99 @@
     {% endif %}
 
   </div>
-
 </section>
+
+<!-- MODAL -->
+<div class="image-modal" id="imageModal">
+
+  <span class="close-modal" onclick="closeModal()">&times;</span>
+
+  <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
+
+  <img id="modalImage">
+
+  <button class="nav-btn next-btn" onclick="nextImage()">❯</button>
+
+</div>
+
+<!-- IMAGE DATA -->
+<script id="gallery-images" type="application/json">
+[
+  {% for img in images %}
+    "{{ img.image.url }}"{% if not forloop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
+
+<!-- JS -->
+<script>
+const images = JSON.parse(document.getElementById("gallery-images").textContent);
+
+let currentIndex = 0;
+
+/* OPEN MODAL */
+function openModal(index) {
+    currentIndex = index;
+    const modal = document.getElementById("imageModal");
+    modal.style.display = "flex";
+    showImage();
+}
+
+/* SHOW IMAGE */
+function showImage() {
+    document.getElementById("modalImage").src = images[currentIndex];
+}
+
+/* CLOSE */
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+
+/* NEXT */
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+}
+
+/* PREV */
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+}
+
+/* CLICK OUTSIDE CLOSE */
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("imageModal");
+    if (e.target === modal) closeModal();
+});
+
+/* KEYBOARD CONTROL */
+document.addEventListener("keydown", function(e) {
+    const modal = document.getElementById("imageModal");
+
+    if (modal.style.display === "flex") {
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "Escape") closeModal();
+    }
+});
+
+/* SWIPE SUPPORT */
+let startX = 0;
+const modal = document.getElementById("imageModal");
+
+modal.addEventListener("touchstart", function(e) {
+    startX = e.touches[0].clientX;
+}, { passive: true });
+
+modal.addEventListener("touchend", function(e) {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    if (diff > 50) nextImage();
+    if (diff < -50) prevImage();
+}, { passive: true });
+
+</script>
 
 {% endblock %}
