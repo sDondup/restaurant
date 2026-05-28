@@ -24,12 +24,6 @@ def gallery(request):
 
     return render(request, 'website/gallery.html', {'images': images})
 
-from django.shortcuts import render, redirect
-from urllib.parse import quote
-
-from .models import Reservation
-
-
 def reservation_view(request):
 
     if request.method == "POST":
@@ -64,14 +58,13 @@ def reservation_view(request):
 
         # OWNER NUMBER
         whatsapp_url = (
-            f"https://wa.me/919004280887?text={whatsapp_message}"
+            f"https://wa.me/32491180010?text={whatsapp_message}"
         )
 
         # REDIRECT TO WHATSAPP
         return redirect(whatsapp_url)
 
     return render(request, 'website/reservation.html')
-
 
 def reservation_success(request):
 

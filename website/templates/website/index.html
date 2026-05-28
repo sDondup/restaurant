@@ -15,7 +15,7 @@
 
   <!-- VIDEO BACKGROUND -->
   <video autoplay muted loop playsinline class="hero-video">
-    <source src="{% static 'video/hero.mp4' %}" type="video/mp4">
+    <source src="{% static 'video/momkitchen.mp4' %}" type="video/mp4">
   </video>
 
   <!-- DARK OVERLAY -->
@@ -34,7 +34,38 @@
 
     <div class="hero-buttons">
       <a href="{% url 'menu' %}" class="btn primary">Explore Menu</a>
-      <a href="{% url 'contact' %}" class="btn outline">Contact Us</a>
+      <a href="{% url 'reservation' %}" class="btn primary">Reservation</a>
+      <div class="social-links">
+
+    <a class="social-btn insta"
+       href="https://instagram.com/ama.brugge"
+       target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a class="social-btn fb"
+       href="https://facebook.com/amabrugge"
+       target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a class="social-btn wa"
+       href="https://wa.me/32491180010"
+       target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a class="social-btn map"
+       href="https://www.google.com/maps?q=Langestraat+94,+Brugge,+Belgium,+8000"
+       target="_blank">
+        <i class="fas fa-map-marker-alt"></i>
+    </a>
+        <a class="social-btn phone"
+       href="tel:+3250111393">
+        <i class="fas fa-phone"></i>
+    </a>
+
+</div>
     </div>
   </div>
 
@@ -66,27 +97,43 @@
 
 
 <!-- FEATURES -->
+{% load i18n %}
+
+<!-- FEATURES -->
 <section class="features">
-  <h2>Why Choose Us</h2>
+
+  <h2>{% trans "Why Choose Us" %}</h2>
 
   <div class="feature-grid">
 
     <div class="feature-card">
       <i class="fas fa-utensils feature-icon"></i>
-      <h3>Authentic Taste</h3>
-      <p>Traditional Tibetan recipes prepared fresh daily.</p>
+
+      <h3>{% trans "Authentic Taste" %}</h3>
+
+      <p>
+        {% trans "Traditional Tibetan recipes prepared fresh daily." %}
+      </p>
     </div>
 
     <div class="feature-card">
       <i class="fas fa-leaf feature-icon"></i>
-      <h3>Fresh Ingredients</h3>
-      <p>We use high-quality and hygienic ingredients only.</p>
+
+      <h3>{% trans "Fresh Ingredients" %}</h3>
+
+      <p>
+        {% trans "We use high-quality and hygienic ingredients only." %}
+      </p>
     </div>
 
     <div class="feature-card">
       <i class="fas fa-mug-hot feature-icon"></i>
-      <h3>Cozy Ambience</h3>
-      <p>A warm and welcoming dining experience.</p>
+
+      <h3>{% trans "Cozy Ambience" %}</h3>
+
+      <p>
+        {% trans "A warm and welcoming dining experience." %}
+      </p>
     </div>
 
   </div>
@@ -95,8 +142,8 @@
 
 <!-- CTA BANNER -->
 <section class="cta">
-  <h2>Ready to Experience Real Tibetan Food?</h2>
-  <a href="{% url 'menu' %}" class="btn primary">View Menu</a>
+  <h2>{% trans "Ready to Experience Real Tibetan Food?" %} </h2>
+  <a href="{% url 'menu' %}" class="btn primary">{% trans "View Menu" %}</a>
 </section>
 
 {% endblock %}
