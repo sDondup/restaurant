@@ -1,6 +1,7 @@
 from .models import Gallery, Reservation, MenuItem
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from urllib.parse import quote
 
 def home(request):
     return render(request, 'website/index.html')
@@ -77,10 +78,3 @@ def reservation_success(request):
         'website/reservation_success.html',
         {"reservation": reservation}
     )
-
-def reservation_success(request):
-    reservation = Reservation.objects.latest('id')  # last booking
-
-    return render(request, 'website/success.html', {
-        'reservation': reservation
-    })
