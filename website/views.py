@@ -1,4 +1,4 @@
-from .models import Gallery, Reservation, MenuItem
+from .models import Gallery, Reservation, MenuCard
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from urllib.parse import quote
@@ -7,8 +7,18 @@ def home(request):
     return render(request, 'website/index.html')
 
 def menu(request):
-    menus = MenuItem.objects.all().order_by('-created_at')
-    return render(request, 'website/menu.html', {'menus': menus})
+    language = request.GET.get('lang', 'EN')
+
+    menus = MenuCard.objects.filter(language=language)
+
+    return render(
+        request,
+        'website/menu.html',
+        {
+            'menus': menus,
+            'selected_lang': language,
+        }
+    )
 
 def about(request):
     return render(request, 'website/about.html')

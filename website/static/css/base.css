@@ -108,7 +108,7 @@ body {
    FOOTER
 ========================= */
 .footer {
-  background: var(--dark);
+  background: #800000;
   color: white;
   text-align: center;
   padding: 20px;

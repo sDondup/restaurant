@@ -26,7 +26,6 @@ class Reservation(models.Model):
     def __str__(self):
         return f"{self.name} | {self.date} | {self.time} | {self.guests} Guests"
 
-
 class MenuItem(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='menu/')
@@ -34,3 +33,17 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.title
+
+class MenuCard(models.Model):
+    LANGUAGE_CHOICES = [
+        ('EN', 'English'),
+        ('NL', 'NL'),
+    ]
+
+    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='menu/')
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.get_language_display()} - {self.title}"
