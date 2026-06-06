@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 11:53-0500\n"
+"POT-Creation-Date: 2026-06-05 19:10+0530\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,103 +15,6 @@ msgstr "Engels"
 #: main/settings.py:15
 msgid "Dutch"
 msgstr "Nederlands"
-
-#: website/templates/website/about.html:4
-#: website/templates/website/about.html:17
-msgid "About Us"
-msgstr "Over ons"
-
-#: website/templates/website/about.html:20
-msgid ""
-"At Tibetan Mom’s Kitchen, we serve more than food — we serve tradition. "
-"Inspired by authentic Himalayan home cooking, our restaurant offers a warm "
-"dining experience with rich flavors, handcrafted momos, and soulful Tibetan "
-"cuisine."
-msgstr ""
-"Bij Tibetan Mom’s Kitchen serveren we meer dan eten — we serveren traditie. "
-"Geïnspireerd door authentiek Himalaya huisgemaakt eten..."
-
-#: website/templates/website/about.html:36
-msgid "Message from the Founder"
-msgstr "Bericht van de oprichter"
-
-#: website/templates/website/about.html:39
-msgid ""
-"Tibetan Mom’s Kitchen was born from a deep love for Himalayan culture and "
-"authentic home-style food."
-msgstr ""
-
-#: website/templates/website/about.html:43
-msgid ""
-"Our mission is to bring warmth, tradition, and unforgettable flavors to "
-"every plate we serve."
-msgstr ""
-
-#: website/templates/website/about.html:47
-msgid "— Founder, Tibetan Mom's Kitchen"
-msgstr ""
-
-#: website/templates/website/about.html:61
-msgid "Who We Are"
-msgstr "Wie wij zijn"
-
-#: website/templates/website/about.html:63
-msgid ""
-"We are a passionate team dedicated to authentic Tibetan cuisine and warm "
-"hospitality."
-msgstr ""
-
-#: website/templates/website/about.html:65
-msgid "Every dish is crafted with tradition, care, and love."
-msgstr ""
-
-#: website/templates/website/about.html:81
-msgid "Our Mission"
-msgstr "Onze missie"
-
-#: website/templates/website/about.html:84
-msgid ""
-"To serve authentic Himalayan flavors while creating a warm and memorable "
-"dining experience."
-msgstr ""
-
-#: website/templates/website/about.html:94
-msgid "Our Values"
-msgstr "Onze waarden"
-
-#: website/templates/website/about.html:100
-msgid "Authenticity"
-msgstr "Authenticiteit"
-
-#: website/templates/website/about.html:101
-#, fuzzy
-#| msgid "Traditional Tibetan recipes prepared fresh daily."
-msgid "Traditional recipes passed through generations."
-msgstr "Traditionele Tibetaanse gerechten dagelijks vers bereid."
-
-#: website/templates/website/about.html:106
-msgid "Quality"
-msgstr "Kwaliteit"
-
-#: website/templates/website/about.html:107
-msgid "Fresh ingredients and high standards."
-msgstr ""
-
-#: website/templates/website/about.html:112
-msgid "Hospitality"
-msgstr "Gastvrijheid"
-
-#: website/templates/website/about.html:113
-msgid "We treat every guest like family."
-msgstr "We behandelen elke gast als familie."
-
-#: website/templates/website/about.html:118
-msgid "Passion"
-msgstr "Passie"
-
-#: website/templates/website/about.html:119
-msgid "Love and care in every dish."
-msgstr ""
 
 #: website/templates/website/base.html:48
 msgid "HOME"
@@ -126,51 +29,134 @@ msgid "ABOUT US"
 msgstr "OVER ONS"
 
 #: website/templates/website/base.html:69
+#: website/templates/website/index.html:55
 msgid "RESERVATION"
-msgstr ""
+msgstr "RESERVERING"
 
 #: website/templates/website/base.html:76
 msgid "GALLERY"
-msgstr ""
+msgstr "GALERIJ"
 
 #: website/templates/website/base.html:83
 msgid "CONTACT"
 msgstr "CONTACT"
 
-#: website/templates/website/index.html:105
-msgid "Why Choose Us"
+#: website/templates/website/index.html:4
+msgid "Home"
 msgstr ""
 
-#: website/templates/website/index.html:112
-msgid "Authentic Taste"
-msgstr "Authentieke Smaak"
+#: website/templates/website/index.html:51
+msgid "EXPLORE MENU"
+msgstr "MENUKAART BEKIJKEN"
 
-#: website/templates/website/index.html:115
-#, fuzzy
-#| msgid "Traditional Tibetan recipes prepared fresh daily."
-msgid "Traditional Tibetan recipes prepared fresh daily."
-msgstr "Traditionele Tibetaanse gerechten dagelijks vers bereid."
+#: website/templates/website/index.html:98
+msgid "Learn More →"
+msgstr ""
 
-#: website/templates/website/index.html:122
-msgid "Fresh Ingredients"
-msgstr "Verse Ingrediënten"
+#: website/templates/website/index.html:117
+msgid "Why Choose Us"
+msgstr "Waarom voor ons kiezen"
 
-#: website/templates/website/index.html:125
-msgid "We use high-quality and hygienic ingredients only."
-msgstr "Wij gebruiken uitsluitend hoogwaardige en hygiënische ingrediënten."
+#: website/templates/website/index.html:158
+msgid "READY TO EXPERIENCE OUR FAMILY KITCHEN?"
+msgstr "Klaar om de smaken van onze familiekeuken te ontdekken?"
 
-#: website/templates/website/index.html:132
-msgid "Cozy Ambience"
-msgstr "Gezellige Sfeer"
-
-#: website/templates/website/index.html:135
-msgid "A warm and welcoming dining experience."
-msgstr "Een warme en gastvrije eetervaring."
-
-#: website/templates/website/index.html:145
-msgid "Ready to Experience Real Tibetan Food?"
-msgstr "Klaar om echte Tibetaanse gerechten te ervaren?"
-
-#: website/templates/website/index.html:146
+#: website/templates/website/menu.html:162
 msgid "View Menu"
-msgstr "Bekijk Menu"
+msgstr "Bekijk ons menu"
+
+msgid "Our Menu"
+msgstr "Ons Menu"
+
+msgid "Menu in English"
+msgstr "Menu in het Engels"
+
+msgid "Menu in NL"
+msgstr "Menu in het Nederlands"
+
+#: website/templates/website/Reservation.html:162
+msgid "Restaurant Reservation"
+msgstr "Restaurant Reservering"
+
+msgid "Your Name"
+msgstr "Uw Naam"
+
+msgid "Phone Number"
+msgstr "Telefoonnummer"
+
+msgid "Reservation Date"
+msgstr "Reserveringsdatum"
+
+msgid "Reservation Time"
+msgstr "Reserveringstijd"
+
+msgid "Number of Guests"
+msgstr "Aantal gasten"
+
+msgid "Enter your name"
+msgstr "Voer uw naam in"
+
+msgid "Enter phone number"
+msgstr "Voer telefoonnummer in"
+
+msgid "How many guests?"
+msgstr "Hoeveel gasten?"
+
+msgid "Book Table"
+msgstr "Tafel Reserveren"
+
+#: website/templates/website/gellery.html:162
+msgid "Our Gallery"
+msgstr "Onze Galerij"
+
+msgid "No images available"
+msgstr "Geen afbeeldingen beschikbaar"
+
+msgid "First"
+msgstr "Eerste"
+
+msgid "Prev"
+msgstr "Vorige"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "Last"
+msgstr "Laatste"
+
+msgid "Page"
+msgstr "Pagina"
+
+msgid "of"
+msgstr "van"
+
+#: website/templates/website/contact.html:162
+msgid "Contact Us"
+msgstr "Contact opnemen"
+
+msgid "We’d love to hear from you. Reach out anytime!"
+msgstr "We horen graag van u. Neem gerust contact met ons op!"
+
+msgid "Call:"
+msgstr "Bellen:"
+
+msgid "You can write a mail:"
+msgstr "U kunt een e-mail sturen:"
+
+msgid "Opening Hours:"
+msgstr "Openingstijden:"
+
+msgid "Follow Us:"
+msgstr "Volg ons:"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Location"
+msgstr "Locatie"

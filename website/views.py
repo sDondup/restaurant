@@ -1,39 +1,74 @@
-from .models import Gallery, Reservation, MenuCard
+from .models import (
+    Home, OurStory, WhyChooseUs, Gallery, Reservation,
+    MenuCard, Contact, AboutUs, FounderSection,
+    WhoWeAre, Mission, Value
+)
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from urllib.parse import quote
+from django.utils.translation import get_language
 
 def home(request):
-    return render(request, 'website/index.html')
+
+    language = get_language()
+
+    home_data = Home.objects.first()
+    story = OurStory.objects.first()
+    why_items = WhyChooseUs.objects.all()
+    contact_info = Contact.objects.first()
+
+    return render(request, 'website/index.html', {
+        'language': language,
+        'home': home_data,
+        'story': story,
+        'why_items': why_items,
+        'contact_info': contact_info,   # ✅ now available in template
+    })
 
 def menu(request):
-    language = request.GET.get('lang', 'EN')
+
+    language = get_language()
 
     menus = MenuCard.objects.filter(language=language)
 
-    return render(
-        request,
-        'website/menu.html',
-        {
-            'menus': menus,
-            'selected_lang': language,
-        }
-    )
+    return render(request, 'website/menu.html', {
+        'menus': menus,
+        'language': language,
+    })
 
 def about(request):
-    return render(request, 'website/about.html')
+
+    language = get_language()
+
+    context = {
+        'language': language,
+        'about': AboutUs.objects.first(),
+        'founder': FounderSection.objects.first(),
+        'who': WhoWeAre.objects.first(),
+    }
+
+    return render(request, 'website/aboutus.html', context)
 
 def contact(request):
-    return render(request, 'website/contact.html')
+
+    contact_info = Contact.objects.first()
+
+    return render(request, 'website/contact.html', {
+        'contact_info': contact_info
+    })
 
 def gallery(request):
+
     images_list = Gallery.objects.all().order_by('title')
 
-    paginator = Paginator(images_list, 12)  # 👈 10 images per page
+    paginator = Paginator(images_list, 12)
     page_number = request.GET.get('page')
+
     images = paginator.get_page(page_number)
 
-    return render(request, 'website/gallery.html', {'images': images})
+    return render(request, 'website/gallery.html', {
+        'images': images
+    })
 
 def reservation_view(request):
 

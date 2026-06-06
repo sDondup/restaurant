@@ -1,5 +1,12 @@
+:root {
+  --primary: #2c6e49;
+  --secondary: #f59e0b;
+  --text: #333;
+  --white: #ffffff;
+}
+
 /* =========================
-   GLOBAL RESET
+   RESET
 ========================= */
 * {
   margin: 0;
@@ -8,12 +15,13 @@
 }
 
 body {
-  color: #333;
+  color: var(--text);
   line-height: 1.6;
+  font-family: Arial, sans-serif;
 }
 
 /* =========================
-   HERO SECTION (VIDEO)
+   HERO SECTION
 ========================= */
 .hero {
   height: 90vh;
@@ -23,21 +31,18 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
+  color: var(--white);
 }
 
-/* VIDEO BACKGROUND */
 .hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   object-fit: cover;
   z-index: 0;
 }
 
-/* DARK OVERLAY */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -45,7 +50,6 @@ body {
   z-index: 1;
 }
 
-/* HERO CONTENT */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -53,7 +57,6 @@ body {
   padding: 20px;
 }
 
-/* TAGLINE */
 .tagline {
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -61,14 +64,12 @@ body {
   opacity: 0.9;
 }
 
-/* MAIN TITLE */
 .hero h1 {
   font-size: 60px;
   margin: 15px 0;
   font-weight: 700;
 }
 
-/* DESCRIPTION */
 .hero .desc {
   font-size: 18px;
   opacity: 0.9;
@@ -93,24 +94,22 @@ body {
   transition: 0.3s;
 }
 
-/* PRIMARY BUTTON */
 .primary {
-  background: #2c6e49;
-  color: white;
+  background: var(--primary);
+  color: var(--white);
 }
 
 .primary:hover {
   background: #1f4f35;
 }
 
-/* OUTLINE BUTTON */
 .outline {
-  border: 2px solid white;
-  color: white;
+  border: 2px solid var(--white);
+  color: var(--white);
 }
 
 .outline:hover {
-  background: white;
+  background: var(--white);
   color: #000;
 }
 
@@ -144,26 +143,25 @@ section {
 .grid img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .grid h2 {
   font-size: 32px;
   margin-bottom: 15px;
-  color: #2c6e49;
+  color: var(--primary);
 }
 
-/* LINK */
 .link {
   display: inline-block;
   margin-top: 15px;
-  color: #2c6e49;
+  color: var(--primary);
   font-weight: 600;
   text-decoration: none;
 }
 
 /* =========================
-   FEATURES SECTION
+   FEATURES
 ========================= */
 .features {
   text-align: center;
@@ -172,7 +170,7 @@ section {
 .features h2 {
   font-size: 34px;
   margin-bottom: 40px;
-  color: #2c6e49;
+  color: var(--primary);
 }
 
 .feature-grid {
@@ -182,10 +180,10 @@ section {
 }
 
 .feature-card {
-  background: white;
+  background: var(--white);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
 }
 
@@ -195,15 +193,26 @@ section {
 
 .feature-card h3 {
   margin-bottom: 10px;
-  color: #2c6e49;
+  color: var(--primary);
+}
+
+.feature-icon {
+  font-size: 32px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  transition: 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.2);
 }
 
 /* =========================
-   CTA SECTION
+   CTA
 ========================= */
 .cta {
-  background: #2c6e49;
-  color: white;
+  background: var(--primary);
+  color: var(--white);
   text-align: center;
 }
 
@@ -213,10 +222,75 @@ section {
 }
 
 /* =========================
+   SOCIAL LINKS
+========================= */
+.social-links {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  font-size: 20px;
+  margin-right: 12px;
+  transition: 0.3s ease;
+}
+
+/* Instagram */
+.social-links .fa-instagram {
+  color: #E4405F;
+}
+
+.social-links .fa-instagram:hover {
+  color: #ff5c7a;
+}
+
+/* Facebook */
+.social-links .fa-facebook-f {
+  color: #1877F2;
+}
+
+.social-links .fa-facebook-f:hover {
+  color: #4a90ff;
+}
+
+/* WhatsApp */
+.social-links .fa-whatsapp {
+  color: #25D366;
+}
+
+.social-links .fa-whatsapp:hover {
+  color: #4be37a;
+}
+
+/* Phone */
+.social-links .fa-phone {
+  color: #f39c12; /* warm orange/gold */
+}
+
+.social-links .fa-phone:hover {
+  color: #ffb84d;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
-
   .hero h1 {
     font-size: 34px;
   }
@@ -232,65 +306,4 @@ section {
   .grid {
     flex-direction: column;
   }
-}
-.feature-icon {
-  font-size: 32px;
-  color: var(--primary);
-  margin-bottom: 12px;
-}
-
-.feature-card:hover .feature-icon {
-  transform: scale(1.2);
-  transition: 0.3s ease;
-}
-
-/* =========================
-   SOCIAL LINKS
-========================= */
-
-.social-links{
-    display:flex;
-    gap:15px;
-    justify-content:center;
-    margin-top:25px;
-    flex-wrap:wrap;
-}
-
-.social-btn{
-    width: 30px;
-    height: 30px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    color:white;
-    font-size:22px;
-    transition:0.3s ease;
-}
-
-/* HOVER */
-.social-btn:hover{
-    transform:translateY(-5px) scale(1.08);
-}
-
-/* COLORS */
-.insta{
-    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
-}
-
-.fb{
-    background:#1877f2;
-}
-
-.wa{
-    background:#25d366;
-}
-
-.map{
-    background:#ea4335;
-}
-
-.phone{
-    background:#f59e0b;
 }

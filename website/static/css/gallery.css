@@ -1,3 +1,9 @@
+.page-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* ✅ 5 per row */

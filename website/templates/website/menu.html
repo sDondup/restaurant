@@ -1,24 +1,25 @@
 {% extends 'website/base.html' %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Menu{% endblock %}
+{% block title %}{% trans "Our Menu" %}{% endblock %}
 
 {% block body %}
 
 <div class="menu-page">
 
-    <h2 class="page-title">Our Menu</h1>
+    <h2 class="page-title">{% trans "Our Menu" %}</h2>
 
+    <!-- LANGUAGE SWITCH (ONLY UI, NOT DB LOGIC) -->
     <div class="language-switcher">
 
-        <a href="?lang=EN"
-           class="{% if selected_lang == 'EN' %}active{% endif %}">
-            Menu in English 
+        <a href="/en/menu/"
+           class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}">
+            {% trans "Menu in English" %}
         </a>
 
-        <a href="?lang=NL"
-           class="{% if selected_lang == 'NL' %}active{% endif %}">
-            Menu in NL
+        <a href="/nl/menu/"
+           class="{% if LANGUAGE_CODE == 'nl' %}active{% endif %}">
+            {% trans "Menu in NL" %}
         </a>
 
     </div>
@@ -29,10 +30,9 @@
 
         <div class="menu-card">
 
-            <img
-                src="{{ item.image.url }}"
-                alt="{{ item.title }}"
-                onclick="openModal({{ forloop.counter0 }})">
+            <img src="{{ item.image.url }}"
+                 alt="{{ item.title }}"
+                 onclick="openModal({{ forloop.counter0 }})">
 
             <div class="menu-content">
                 <h3>{{ item.title }}</h3>
@@ -43,7 +43,7 @@
         {% empty %}
 
         <div class="no-menu">
-            <h3>No menu uploaded for this language.</h3>
+            <h3>{% trans "No menu uploaded for this language." %}</h3>
         </div>
 
         {% endfor %}
@@ -52,6 +52,7 @@
 
 </div>
 
+<!-- MODAL -->
 <div class="image-modal" id="imageModal">
 
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -64,96 +65,81 @@
 
 </div>
 
+<!-- IMAGE DATA -->
 <script id="menu-images-data" type="application/json">
-    [
-    {% for item in menus %}
-        "{{ item.image.url }}"{% if not forloop.last %},{% endif %}
-    {% endfor %}
-    ]
-    </script>
+[
+{% for item in menus %}
+    "{{ item.image.url }}"{% if not forloop.last %},{% endif %}
+{% endfor %}
+]
+</script>
 
+<!-- JS -->
 <script>
-    const images = JSON.parse(
-        document.getElementById("menu-images-data").textContent
-    );
 
-    let currentIndex = 0;
+const images = JSON.parse(
+    document.getElementById("menu-images-data").textContent
+);
 
-    function openModal(index) {
+let currentIndex = 0;
 
-        currentIndex = index;
+function openModal(index) {
+    currentIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    document.getElementById("modalImage").src = images[currentIndex];
+}
 
-        document.getElementById("imageModal").style.display = "flex";
-        document.getElementById("modalImage").src = images[currentIndex];
-    }
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
 
-    function closeModal() {
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("modalImage").src = images[currentIndex];
+}
 
-        document.getElementById("imageModal").style.display = "none";
-    }
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("modalImage").src = images[currentIndex];
+}
 
-    function nextImage() {
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById("imageModal");
+    if (event.target === modal) closeModal();
+});
 
-        currentIndex = (currentIndex + 1) % images.length;
-
-        document.getElementById("modalImage").src = images[currentIndex];
-    }
-
-    function prevImage() {
-
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-
-        document.getElementById("modalImage").src = images[currentIndex];
-    }
-
-    window.addEventListener("click", function(event) {
-
-        const modal = document.getElementById("imageModal");
-
-        if (event.target === modal) {
-            closeModal();
-        }
-
-    });
-
-    document.addEventListener("keydown", function(e) {
-
-        const modal = document.getElementById("imageModal");
-
-        if (modal.style.display === "flex") {
-
-            if (e.key === "ArrowRight") nextImage();
-            if (e.key === "ArrowLeft") prevImage();
-            if (e.key === "Escape") closeModal();
-
-        }
-
-    });
-
-    let startX = 0;
-    let endX = 0;
-
+document.addEventListener("keydown", function(e) {
     const modal = document.getElementById("imageModal");
 
-    modal.addEventListener("touchstart", function(e) {
-        startX = e.touches[0].clientX;
-    }, { passive: true });
+    if (modal.style.display === "flex") {
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "Escape") closeModal();
+    }
+});
 
-    modal.addEventListener("touchend", function(e) {
+// SWIPE
+let startX = 0;
+let endX = 0;
 
-        endX = e.changedTouches[0].clientX;
+const modal = document.getElementById("imageModal");
 
-        const diff = startX - endX;
+modal.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+}, { passive: true });
 
-        if (diff > 50) {
-            nextImage();
-        }
+modal.addEventListener("touchend", e => {
+    endX = e.changedTouches[0].clientX;
 
-        if (diff < -50) {
-            prevImage();
-        }
+    const diff = startX - endX;
 
-    }, { passive: true });
+    if (diff > 50) nextImage();
+    if (diff < -50) prevImage();
+
+}, { passive: true });
+
 </script>
+
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "website/base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Gallery{% endblock %}
+{% block title %}{% trans "Gallery" %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
@@ -10,7 +10,8 @@
 {% block body %}
 
 <section class="gallery">
-  <h2 class="gallery-title">Our Gallery</h2>
+
+  <h2 class="page-title">{% trans "Our Gallery" %}</h2>
 
   <!-- GRID -->
   <div class="gallery-grid">
@@ -21,8 +22,9 @@
              alt="{{ img.title }}"
              onclick="openModal({{ forloop.counter0 }})">
       </div>
+
     {% empty %}
-      <p>No images available</p>
+      <p>{% trans "No images available" %}</p>
     {% endfor %}
 
   </div>
@@ -31,20 +33,21 @@
   <div class="pagination">
 
     {% if images.has_previous %}
-      <a href="?page=1">First</a>
-      <a href="?page={{ images.previous_page_number }}">Prev</a>
+      <a href="?page=1">{% trans "First" %}</a>
+      <a href="?page={{ images.previous_page_number }}">{% trans "Prev" %}</a>
     {% endif %}
 
     <span class="current">
-      Page {{ images.number }} of {{ images.paginator.num_pages }}
+      {% trans "Page" %} {{ images.number }} {% trans "of" %} {{ images.paginator.num_pages }}
     </span>
 
     {% if images.has_next %}
-      <a href="?page={{ images.next_page_number }}">Next</a>
-      <a href="?page={{ images.paginator.num_pages }}">Last</a>
+      <a href="?page={{ images.next_page_number }}">{% trans "Next" %}</a>
+      <a href="?page={{ images.paginator.num_pages }}">{% trans "Last" %}</a>
     {% endif %}
 
   </div>
+
 </section>
 
 <!-- MODAL -->
@@ -75,31 +78,25 @@ const images = JSON.parse(document.getElementById("gallery-images").textContent)
 
 let currentIndex = 0;
 
-/* OPEN MODAL */
 function openModal(index) {
     currentIndex = index;
-    const modal = document.getElementById("imageModal");
-    modal.style.display = "flex";
+    document.getElementById("imageModal").style.display = "flex";
     showImage();
 }
 
-/* SHOW IMAGE */
 function showImage() {
     document.getElementById("modalImage").src = images[currentIndex];
 }
 
-/* CLOSE */
 function closeModal() {
     document.getElementById("imageModal").style.display = "none";
 }
 
-/* NEXT */
 function nextImage() {
     currentIndex = (currentIndex + 1) % images.length;
     showImage();
 }
 
-/* PREV */
 function prevImage() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     showImage();
@@ -111,7 +108,7 @@ window.addEventListener("click", function(e) {
     if (e.target === modal) closeModal();
 });
 
-/* KEYBOARD CONTROL */
+/* KEYBOARD SUPPORT */
 document.addEventListener("keydown", function(e) {
     const modal = document.getElementById("imageModal");
 
@@ -122,7 +119,7 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-/* SWIPE SUPPORT */
+/* SWIPE */
 let startX = 0;
 const modal = document.getElementById("imageModal");
 
