@@ -265,6 +265,15 @@ section {
   color: #4be37a;
 }
 
+/* Location (Map) */
+.social-links .fa-map-marker-alt {
+  color: #e74c3c; /* red map pin color */
+}
+
+.social-links .fa-map-marker-alt:hover {
+  color: #ff6b5a;
+}
+
 /* Phone */
 .social-links .fa-phone {
   color: #f39c12; /* warm orange/gold */

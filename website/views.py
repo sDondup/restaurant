@@ -79,6 +79,7 @@ def reservation_view(request):
         date = request.POST.get("date")
         time = request.POST.get("time")
         guests = request.POST.get("guests")
+        special_requests = request.POST.get("special_requests")
 
         # SAVE TO DATABASE
         reservation = Reservation.objects.create(
@@ -99,7 +100,8 @@ def reservation_view(request):
             f"Phone: {phone}\n"
             f"Date: {date}\n"
             f"Time: {time}\n"
-            f"Guests: {guests}"
+            f"Guests: {guests}\n"
+            f"Special Requests: {special_requests or 'None'}"
         )
 
         # OWNER NUMBER

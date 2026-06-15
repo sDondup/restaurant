@@ -56,8 +56,9 @@ class Reservation(models.Model):
     date = models.DateField()
     time = models.TimeField()
     guests = models.IntegerField()
-
+    special_requests = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return f"{self.name} | {self.date} | {self.time} | {self.guests} Guests"
