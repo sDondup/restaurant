@@ -53,8 +53,19 @@ def contact(request):
 
     contact_info = Contact.objects.first()
 
+    language = get_language()
+
+    display_hours = None
+
+    if contact_info:
+        if language == "nl":
+            display_hours = contact_info.opening_hours_nl
+        else:
+            display_hours = contact_info.opening_hours_en
+
     return render(request, 'website/contact.html', {
-        'contact_info': contact_info
+        'contact_info': contact_info,
+        'display_hours': display_hours
     })
 
 def gallery(request):

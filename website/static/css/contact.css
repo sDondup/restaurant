@@ -1,231 +1,314 @@
-/* PAGE BACKGROUND */
+/* =========================
+   PAGE
+========================= */
+
 .contact-section {
-  padding: 70px 10%;
-  background: #f9f9f9;
+    padding: 90px 8%;
+    background: #f8f8f6;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .contact-header {
-  text-align: center;
-  margin-bottom: 40px;
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.subtitle {
+    color: #c59d5f;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .contact-header h1 {
-  font-size: 40px;
-  color: #2c6e49;
-  margin-bottom: 10px;
+    font-size: 48px;
+    color: #222;
+    margin: 12px 0;
 }
 
 .contact-header p {
-  color: #666;
-  font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    font-size: 16px;
 }
 
-/* LAYOUT */
-.contact-container {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
+/* =========================
+   LAYOUT
+========================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 35px;
+    align-items: stretch;
 }
 
-/* FORM BOX */
-.contact-form {
-  flex: 1;
-  min-width: 300px;
-  max-width: 450px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+/* =========================
+   CONTACT CARD
+========================= */
+
+.contact-card {
+    background: white;
+    padding: 35px;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  font-size: 14px;
-  transition: 0.3s;
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 30px;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #2c6e49;
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+    background: #2c6e49;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* BUTTON */
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  background: #2c6e49;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
+.icon-circle i {
+    font-size: 18px;
 }
 
-.contact-form button:hover {
-  background: #1f4f35;
+.info-item h4 {
+    margin: 0 0 5px;
+    color: #222;
+    font-size: 17px;
 }
 
-/* INFO BOX */
-.contact-info {
-  flex: 1;
-  min-width: 280px;
-  max-width: 400px;
+.info-item p {
+    margin: 0;
+    color: #666;
+    line-height: 1.7;
 }
 
-.contact-info h3 {
-  color: #2c6e49;
-  margin-bottom: 10px;
-  margin-top: 15px;
+.opening-hours-box{
+    align-items: flex-start;
 }
 
-.contact-info p {
-  margin-bottom: 8px;
-  color: #444;
+.hours-content{
+    width: 100%;
 }
 
-/* SOCIAL LINKS */
+.hours-card{
+    margin-top: 10px;
+    padding: 14px 16px;
+
+    background: #f8f9fb;
+    border: 1px solid #eee;
+    border-radius: 12px;
+
+    font-size: 14px;
+    line-height: 1.9;
+    color: #444;
+
+    white-space: pre-line;
+}
+
+/* make it feel structured like a schedule */
+.hours-card br{
+    margin-bottom: 6px;
+}
+
+/* =========================
+   SOCIAL LINKS
+========================= */
+
 .social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
 }
 
 .social-links a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
 
-/* COLORS */
-.social-links .insta { color: #E1306C; }
-.social-links .fb { color: #1877F2; }
-.social-links .wa { color: #25D366; }
-.social-links .map { color: #EA4335; }
-
-/* HOVER */
-.social-links a:hover {
-  background: rgba(0,0,0,0.05);
-}
-
-.contact-container {
     display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    transition: all .3s ease;
 }
 
-/* CONTACT INFO */
-.contact-info {
-    flex: 1;
-    min-width: 280px;
+/* Instagram */
+
+.instagram {
+    background: linear-gradient(
+        135deg,
+        #f09433,
+        #e6683c,
+        #dc2743,
+        #cc2366,
+        #bc1888
+    );
 }
 
-/* MAP WRAPPER */
-.map-wrapper {
-    flex: 1;
-    min-width: 300px;
+/* Facebook */
+
+.facebook {
+    background: #1877F2;
+}
+
+/* WhatsApp */
+
+.whatsapp {
+    background: #25D366;
+}
+
+.social-links a:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+}
+
+/* =========================
+   MAP CARD
+========================= */
+
+.map-card {
     position: relative;
-    height: 500px;
-    border-radius: 18px;
+    min-height: 550px;
+
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    margin-top: 10px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
 }
 
-/* MAP IMAGE */
-.map-frame {
+.map-card iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease, filter 0.4s ease;
-    filter: contrast(1.05) saturate(1.05);
+    border: none;
 }
 
-/* HOVER EFFECT */
-.map-wrapper a:hover .map-frame {
-    transform: scale(1.05);
-    filter: brightness(0.95) contrast(1.1);
+.location {
+    background: linear-gradient(
+        135deg,
+        #EA4335,
+        #FBBC05
+    );
 }
 
-/* FLOATING CARD */
-.map-card {
+/* =========================
+   MAP OVERLAY
+========================= */
+
+.map-overlay {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 14px 16px;
-    border-radius: 12px;
-    width: 240px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    font-family: sans-serif;
-    backdrop-filter: blur(6px);
+
+    bottom: 25px;
+    left: 25px;
+
+    background: rgba(255,255,255,.95);
+
+    padding: 20px;
+    border-radius: 16px;
+
+    max-width: 280px;
+
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.12);
 }
 
-/* TITLE */
-.map-card h3 {
-    margin: 0 0 6px;
-    font-size: 16px;
+.map-overlay h3 {
+    margin: 0 0 10px;
     color: #222;
 }
 
-/* TEXT */
-.map-card p {
-    margin: 0 0 10px;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.4;
+.map-overlay p {
+    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.6;
 }
 
-/* BUTTON */
+/* =========================
+   BUTTON
+========================= */
+
 .directions-btn {
     display: inline-block;
-    background: #e74c3c;
+
+    padding: 10px 18px;
+
+    background: #2c6e49;
     color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
+
     text-decoration: none;
-    font-size: 13px;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+
+    transition: .3s;
 }
 
 .directions-btn:hover {
-    background: #ff5a4d;
+    background: #24583b;
     transform: translateY(-2px);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+/* =========================
+   TABLET
+========================= */
 
-    .contact-container {
-        flex-direction: column;
-    }
+@media (max-width: 992px) {
 
-    .map-wrapper {
-        height: 300px;
+    .contact-grid {
+        grid-template-columns: 1fr;
     }
 
     .map-card {
-        width: 200px;
-        font-size: 12px;
+        min-height: 400px;
     }
 
-    .map-card h3 {
-        font-size: 14px;
+    .contact-header h1 {
+        font-size: 40px;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 576px) {
+
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+    .contact-header h1 {
+        font-size: 32px;
+    }
+
+    .contact-card {
+        padding: 25px;
+    }
+
+    .icon-circle {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+    }
+
+    .map-overlay {
+        left: 15px;
+        right: 15px;
+        max-width: unset;
     }
 }

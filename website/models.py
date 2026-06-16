@@ -88,7 +88,9 @@ class MenuCard(models.Model):
 class Contact(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-    open_hours = models.CharField(max_length=255)
+
+    opening_hours_en = models.TextField()
+    opening_hours_nl = models.TextField()
 
     instagram = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
@@ -97,6 +99,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.phone
+
+    @property
+    def display_hours(self):
+        from django.utils.translation import get_language
+
+        if get_language() == "nl":
+            return self.opening_hours_nl
+        return self.opening_hours_en
 
 class AboutUs(models.Model):
     title_eng = models.CharField(max_length=255)

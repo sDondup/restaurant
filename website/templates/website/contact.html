@@ -14,51 +14,93 @@
 <section class="contact-section">
 
     <div class="contact-header">
+        <span class="subtitle">{% trans "Get In Touch" %}</span>
+
         <h1>{% trans "Contact Us" %}</h1>
-        <p>{% trans "We’d love to hear from you. Reach out anytime!" %}</p>
+
+        <p>
+            {% trans "We'd love to hear from you. Visit us, call us, or connect with us online." %}
+        </p>
     </div>
 
-    <div class="contact-container">
+    <div class="contact-grid">
 
-        <!-- =========================
-             CONTACT INFO
-        ========================== -->
-        <div class="contact-info">
+        <!-- CONTACT DETAILS -->
+        <div class="contact-card">
 
-            <h3>{% trans "Call:" %}</h3>
-            <p>📞 {% if contact_info %}{{ contact_info.phone }}{% endif %}</p>
+            <div class="info-item">
+                <div class="icon-circle">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                    <h4>{% trans "Phone" %}</h4>
+                    <p>{{ contact_info.phone }}</p>
+                </div>
+            </div>
 
-            <h3>{% trans "You can write a mail:" %}</h3>
-            <p>📧 {% if contact_info %}{{ contact_info.email }}{% endif %}</p>
+            <div class="info-item">
+                <div class="icon-circle">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <h4>{% trans "Email" %}</h4>
+                    <p>{{ contact_info.email }}</p>
+                </div>
+            </div>
 
-            <h3>{% trans "Opening Hours:" %}</h3>
-            <p>{% if contact_info %}{{ contact_info.open_hours }}{% endif %}</p>
+            <!-- OPENING HOURS (YOUR VIEW HANDLES LANGUAGE) -->
+            <div class="info-item opening-hours-box">
 
-            <h3>{% trans "Follow Us:" %}</h3>
+                <div class="icon-circle">
+                    <i class="fas fa-clock"></i>
+                </div>
 
+                <div class="hours-content">
+
+                    <h4>{% trans "Opening Hours" %}</h4>
+
+                    <div class="hours-card">
+                        {{ display_hours|linebreaksbr }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="info-item">
+                <div class="icon-circle">
+                    <i class="fas fa-location-dot"></i>
+                </div>
+                <div>
+                    <h4>{% trans "Address" %}</h4>
+                    <p>{{ contact_info.location_text|default:"Ama Tibetan Restaurant, Bruges" }}</p>
+                </div>
+            </div>
+
+            <!-- SOCIAL -->
             <div class="social-links">
 
                 {% if contact_info.instagram %}
-                <a class="insta" href="{{ contact_info.instagram }}" target="_blank">
-                    <i class="fab fa-instagram"></i> {% trans "Instagram" %}
+                <a href="{{ contact_info.instagram }}" target="_blank" class="instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.facebook %}
-                <a class="fb" href="{{ contact_info.facebook }}" target="_blank">
-                    <i class="fab fa-facebook"></i> {% trans "Facebook" %}
+                <a href="{{ contact_info.facebook }}" target="_blank" class="facebook">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.whatsapp %}
-                <a class="wa" href="{{ contact_info.whatsapp }}" target="_blank">
-                    <i class="fab fa-whatsapp"></i> {% trans "WhatsApp" %}
+                <a href="{{ contact_info.whatsapp }}" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.location %}
-                <a class="map" href="{{ contact_info.location }}" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i> {% trans "Location" %}
+                <a href="{{ contact_info.location }}" target="_blank" class="location">
+                    <i class="fas fa-location-dot"></i>
                 </a>
                 {% endif %}
 
@@ -66,33 +108,29 @@
 
         </div>
 
-        <!-- =========================
-             GOOGLE MAP CARD (IMAGE)
-        ========================== -->
-        <div class="map-wrapper">
+        <!-- MAP -->
+        <div class="map-card">
 
-            <a href="https://maps.app.goo.gl/mueJZVGhbf6Eyu5C9?g_st=ic" target="_blank">
+            <iframe
+                src="https://www.google.com/maps?q=Ama+Tibetan+Restaurant+Bruges&output=embed"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
 
-                <img src="{% static 'images/googlemap.png' %}"
-                     alt="Our Location on Google Maps"
-                     class="map-frame">
+            <div class="map-overlay">
 
-            </a>
-
-            <div class="map-card">
-
-                <h3>📍 Our Location</h3>
+                <h3>📍 Tibetan Mom's Kitchen</h3>
 
                 <p>
-                    {% if contact_info %}
-                        {{ contact_info.location_text|default:"Ama Tibetan Restaurant, Bruges" }}
-                    {% endif %}
+                    {{ contact_info.location_text|default:"Bruges, Belgium" }}
                 </p>
 
                 <a href="https://maps.app.goo.gl/mueJZVGhbf6Eyu5C9?g_st=ic"
                    target="_blank"
                    class="directions-btn">
-                    🚗 Get Directions
+
+                    {% trans "Get Directions" %}
+
                 </a>
 
             </div>
