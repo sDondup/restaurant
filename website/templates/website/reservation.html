@@ -1,7 +1,9 @@
 {% extends "website/base.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Restaurant Reservation" %} | Tibetan Mom's Kitchen{% endblock %}
+{% block title %}
+{% trans "Restaurant Reservation" %} | Tibetan Mom's Kitchen
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/reservation.css' %}">
@@ -13,16 +15,19 @@
 
 <section class="reservation-section">
 
-    <h2>{% trans "Restaurant Reservation" %}</h2>
+    <h2 class="reveal-up">
+        {% trans "Restaurant Reservation" %}
+    </h2>
 
-    <form method="POST">
+    <form method="POST" class="reservation-form reveal-up">
         {% csrf_token %}
 
         <!-- NAME -->
         <label>{% trans "Your Name" %}</label>
         <div class="input-box">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="name"
+            <input type="text"
+                   name="name"
                    placeholder="{% trans 'Enter your name' %}"
                    required>
         </div>
@@ -31,7 +36,8 @@
         <label>{% trans "Phone Number" %}</label>
         <div class="input-box">
             <i class="fa-solid fa-phone"></i>
-            <input type="text" name="phone"
+            <input type="text"
+                   name="phone"
                    placeholder="{% trans 'Enter phone number' %}"
                    required>
         </div>
@@ -40,29 +46,40 @@
         <label>{% trans "Reservation Date" %}</label>
         <div class="input-box">
             <i class="fa-solid fa-calendar-days"></i>
-            <input type="date" name="date" required>
+            <input type="date"
+                   name="date"
+                   required>
         </div>
 
         <!-- TIME -->
         <label>{% trans "Reservation Time" %}</label>
         <div class="input-box">
             <i class="fa-solid fa-clock"></i>
-            <input type="time" name="time" required>
+            <input type="time"
+                   name="time"
+                   required>
         </div>
 
         <!-- GUESTS -->
         <label>{% trans "Number of Guests" %}</label>
         <div class="input-box">
             <i class="fa-solid fa-users"></i>
-            <input type="number" name="guests"
+            <input type="number"
+                   name="guests"
                    placeholder="{% trans 'How many guests?' %}"
                    required>
         </div>
 
         <!-- SPECIAL REQUESTS -->
-        <label>Special Requests / Allergies</label>
+        <label>
+            {% trans "Special Requests / Allergies" %}
+        </label>
+
         <div class="input-box">
-            <textarea name="special_requests" placeholder="Mention allergies or special instructions"></textarea>
+            <textarea
+                name="special_requests"
+                placeholder="{% trans 'Mention allergies or special instructions' %}">
+            </textarea>
         </div>
 
         <!-- BUTTON -->
@@ -74,4 +91,26 @@
 
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll(".reveal-up");
+
+    function revealOnScroll() {
+        reveals.forEach((el) => {
+            const top = el.getBoundingClientRect().top;
+            const trigger = window.innerHeight * 0.9;
+
+            if (top < trigger) {
+                el.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+});
+</script>
 {% endblock %}

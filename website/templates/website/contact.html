@@ -13,43 +13,54 @@
 
 <section class="contact-section">
 
-    <div class="contact-header">
-        <span class="subtitle">{% trans "Get In Touch" %}</span>
+    <!-- Header -->
+    <div class="contact-header reveal-up">
 
-        <h1>{% trans "Contact Us" %}</h1>
+        <span class="subtitle">
+            {% trans "Get In Touch" %}
+        </span>
+
+        <h1>
+            {% trans "Contact Us" %}
+        </h1>
 
         <p>
             {% trans "We'd love to hear from you. Visit us, call us, or connect with us online." %}
         </p>
+
     </div>
 
     <div class="contact-grid">
 
-        <!-- CONTACT DETAILS -->
-        <div class="contact-card">
+        <!-- LEFT CARD -->
+        <div class="contact-card reveal-left">
 
-            <div class="info-item">
+            <!-- Phone -->
+            <div class="info-item reveal-item">
                 <div class="icon-circle">
                     <i class="fas fa-phone"></i>
                 </div>
+
                 <div>
                     <h4>{% trans "Phone" %}</h4>
                     <p>{{ contact_info.phone }}</p>
                 </div>
             </div>
 
-            <div class="info-item">
+            <!-- Email -->
+            <div class="info-item reveal-item">
                 <div class="icon-circle">
                     <i class="fas fa-envelope"></i>
                 </div>
+
                 <div>
                     <h4>{% trans "Email" %}</h4>
                     <p>{{ contact_info.email }}</p>
                 </div>
             </div>
 
-            <!-- OPENING HOURS (YOUR VIEW HANDLES LANGUAGE) -->
-            <div class="info-item opening-hours-box">
+            <!-- Opening Hours -->
+            <div class="info-item opening-hours-box reveal-item">
 
                 <div class="icon-circle">
                     <i class="fas fa-clock"></i>
@@ -67,39 +78,54 @@
 
             </div>
 
-            <div class="info-item">
+            <!-- Address -->
+            <div class="info-item reveal-item">
+
                 <div class="icon-circle">
                     <i class="fas fa-location-dot"></i>
                 </div>
+
                 <div>
                     <h4>{% trans "Address" %}</h4>
-                    <p>{{ contact_info.location_text|default:"Ama Tibetan Restaurant, Bruges" }}</p>
+
+                    <p>
+                        {{ contact_info.location_text|default:"Ama Tibetan Restaurant, Bruges" }}
+                    </p>
                 </div>
+
             </div>
 
-            <!-- SOCIAL -->
-            <div class="social-links">
+            <!-- Social -->
+            <div class="social-links reveal-up">
 
                 {% if contact_info.instagram %}
-                <a href="{{ contact_info.instagram }}" target="_blank" class="instagram">
+                <a href="{{ contact_info.instagram }}"
+                   target="_blank"
+                   class="instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.facebook %}
-                <a href="{{ contact_info.facebook }}" target="_blank" class="facebook">
+                <a href="{{ contact_info.facebook }}"
+                   target="_blank"
+                   class="facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.whatsapp %}
-                <a href="{{ contact_info.whatsapp }}" target="_blank" class="whatsapp">
+                <a href="{{ contact_info.whatsapp }}"
+                   target="_blank"
+                   class="whatsapp">
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 {% endif %}
 
                 {% if contact_info.location %}
-                <a href="{{ contact_info.location }}" target="_blank" class="location">
+                <a href="{{ contact_info.location }}"
+                   target="_blank"
+                   class="location">
                     <i class="fas fa-location-dot"></i>
                 </a>
                 {% endif %}
@@ -109,7 +135,7 @@
         </div>
 
         <!-- MAP -->
-        <div class="map-card">
+        <div class="map-card reveal-right">
 
             <iframe
                 src="https://www.google.com/maps?q=Ama+Tibetan+Restaurant+Bruges&output=embed"
@@ -140,5 +166,28 @@
     </div>
 
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const reveals = document.querySelectorAll(
+        ".reveal-up, .reveal-left, .reveal-right, .reveal-item"
+    );
+
+    function revealOnScroll() {
+        reveals.forEach((el) => {
+            const top = el.getBoundingClientRect().top;
+            const trigger = window.innerHeight * 0.92;
+
+            if (top < trigger) {
+                el.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+});
+</script>
 
 {% endblock %}

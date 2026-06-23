@@ -1,7 +1,7 @@
 from .models import (
     Home, OurStory, WhyChooseUs, Gallery, Reservation,
     MenuCard, Contact, AboutUs, FounderSection,
-    WhoWeAre, Mission, Value
+    WhoWeAre, Mission, Value, GoogleReview, CustomerReview
 )
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -16,13 +16,17 @@ def home(request):
     story = OurStory.objects.first()
     why_items = WhyChooseUs.objects.all()
     contact_info = Contact.objects.first()
+    google_review = GoogleReview.objects.first()
+    customer_review = CustomerReview.objects.all()[:6]  # latest 6 reviews
 
     return render(request, 'website/index.html', {
         'language': language,
         'home': home_data,
         'story': story,
         'why_items': why_items,
-        'contact_info': contact_info,   # ✅ now available in template
+        'contact_info': contact_info,
+        "google_review": google_review,
+        'customer_review': customer_review,
     })
 
 def menu(request):

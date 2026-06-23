@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Home, OurStory, WhyChooseUs, Gallery, Reservation, MenuCard, Contact, AboutUs, FounderSection, WhoWeAre, Mission, Value
+from .models import GoogleReview, CustomerReview, Home, OurStory, WhyChooseUs, Gallery, Reservation, MenuCard, Contact, AboutUs, FounderSection, WhoWeAre, Mission, Value
 
 # Register your models here.
 admin.site.register(Home)
@@ -13,3 +13,6 @@ admin.site.register(Contact)
 admin.site.register(AboutUs)
 admin.site.register(FounderSection)
 admin.site.register(WhoWeAre)
+
+admin.site.register(GoogleReview)
+admin.site.register(CustomerReview)

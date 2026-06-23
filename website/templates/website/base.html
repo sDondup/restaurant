@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>{% block title %}Tibetan Mom's Kitchen{% endblock %}</title>
+<link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+<link rel="apple-touch-icon" href="{% static 'images/logo.png' %}">
 
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% block extra_css %}{% endblock %}
@@ -31,10 +33,14 @@
 
   <!-- LOGO -->
   <div class="logo">
-    <img src="{% static 'images/logo.png' %}" alt="Logo">
-      <span style="  color: white; font-size: 20px; font-weight: bold; line-height: 1.3;">
-        TIBETAN MOM'S KITCHEN <BR/> ཨ་མའི་ཐབ་ཚང་།
-    </span>
+    <a href="{% url 'home' %}" class="logo">
+      <img src="{% static 'images/logo.png' %}" alt="Logo">
+
+      <span class="logo-text">
+        TIBETAN MOM'S KITCHEN <br>
+        ཨ་མའི་ཐབ་ཚང་།
+      </span>
+  </a>
   </div>
 
   <!-- MOBILE TOGGLE -->

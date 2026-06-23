@@ -1,3 +1,5 @@
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import StaticViewSitemap
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
@@ -18,3 +20,11 @@ urlpatterns += i18n_patterns(
 # ✅ ADD THIS LINE
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
+urlpatterns += [
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}),
+]

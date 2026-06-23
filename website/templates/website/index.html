@@ -14,7 +14,6 @@
      HERO SECTION
 ========================= -->
 <section class="hero">
-
   {% if home.video %}
     <video autoplay muted loop playsinline class="hero-video">
       <source src="{{ home.video.url }}" type="video/mp4">
@@ -27,7 +26,25 @@
 
   <div class="hero-overlay"></div>
 
+<!-- =========================
+    very first box (rate, vidoe, eplore menu, reservation)
+========================= -->
   <div class="hero-content">
+
+    {% if google_review %}
+    <a href="{{ google_review.review_url }}"
+      target="_blank"
+      class="google-rating">
+
+        <span class="stars">★★★★★</span>
+
+        <span class="rating-text">
+            {{ google_review.rating }} / 5 ·
+            {{ google_review.review_count }}+ Reviews
+        </span>
+
+    </a>
+    {% endif %}
 
     <h1>
       {% if language == 'nl' %}
@@ -46,7 +63,6 @@
     </p>
 
     <div class="hero-buttons">
-
       <a href="{% url 'menu' %}" class="btn primary">
         {% trans "EXPLORE MENU" %}
       </a>
@@ -103,8 +119,7 @@
 
   <div class="container grid">
 
-    <div class="text">
-
+    <div class="text reveal-left">
       <h2>
         {% if language == 'nl' %}
           {{ story.title_nl }}
@@ -113,7 +128,7 @@
         {% endif %}
       </h2>
 
-      <p>
+      <p class="about-text">
         {% if language == 'nl' %}
           {{ story.content_nl }}
         {% else %}
@@ -124,10 +139,9 @@
       <a href="{% url 'about' %}" class="link">
         {% trans "Learn More →" %}
       </a>
-
     </div>
 
-    <div class="image">
+    <div class="image reveal-right">
       <img src="{{ story.image.url }}" alt="Story">
     </div>
 
@@ -141,13 +155,12 @@
 ========================= -->
 <section class="features">
 
-  <h2>{% trans "Why Choose Us" %}</h2>
+  <h2 class="reveal-up">{% trans "Why Choose Us" %}</h2>
 
   <div class="feature-grid">
 
     {% for item in why_items %}
-
-    <div class="feature-card">
+    <div class="feature-card reveal-up">
 
       <i class="fas {{ item.icon }} feature-icon"></i>
 
@@ -168,7 +181,6 @@
       </p>
 
     </div>
-
     {% endfor %}
 
   </div>
@@ -177,10 +189,9 @@
 
 
 <!-- =========================
-     CTA SECTION
+     Menu SECTION
 ========================= -->
-<section class="cta">
-
+<section class="cta reveal-up">
   <h2>
     {% trans "READY TO EXPERIENCE OUR FAMILY KITCHEN?" %}
   </h2>
@@ -188,7 +199,275 @@
   <a href="{% url 'menu' %}" class="btn primary">
     {% trans "View Menu" %}
   </a>
-
 </section>
 
+
+<!-- =========================
+     Customer Review
+========================= -->
+<!-- =========================
+     Customer Reviews
+========================= -->
+{% if customer_review %}
+<section class="google-reviews-section reveal-up">
+
+  <h2 class="google-reviews-title">
+    {% trans "What Our Guests Say" %}
+  </h2>
+
+  {% if google_review %}
+  <div class="google-review-summary">
+
+    <div class="google-rating-left">
+
+      <div class="google-rating-number">
+        {{ google_review.rating }}
+      </div>
+
+      <div>
+        <div class="google-stars">
+          ★★★★★
+        </div>
+
+        <p class="google-review-count">
+          {{ google_review.review_count }}+ Reviews on Google
+        </p>
+      </div>
+
+    </div>
+
+    <a href="{{ google_review.review_url }}" target="_blank" class="google-review-btn">
+      {% trans "Review us on Google" %}
+    </a>
+
+  </div>
+  {% endif %}
+
+  <div class="google-review-wrapper">
+
+    <button class="google-nav google-prev">
+      &#10094;
+    </button>
+
+    <div
+      class="google-review-slider"
+      id="googleReviewSlider"
+    >
+
+      {% for review in customer_review %}
+      <div class="google-review-card">
+
+        {% if review.image %}
+          <img
+            src="{{ review.image.url }}"
+            alt="{{ review.name }}"
+            class="google-review-avatar"
+          >
+        {% endif %}
+
+        <div class="google-card-stars">
+          {% for i in "12345" %}
+            {% if forloop.counter <= review.rating %}
+              ★
+            {% else %}
+              ☆
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <p class="google-card-comment">
+          {{ review.comment|truncatechars:120 }}
+        </p>
+
+        {% if review.comment|length > 100 %}
+        <span
+          class="read-more"
+          data-name="{{ review.name }}"
+          data-comment="{{ review.comment }}"
+        >
+          Read More
+        </span>
+        {% endif %}
+
+        <h4 class="google-card-name">
+          — {{ review.name }}
+        </h4>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <button class="google-nav google-next">
+      &#10095;
+    </button>
+
+  </div>
+
+</section>
+<div class="review-modal" id="reviewModal">
+
+  <div class="review-modal-content">
+
+    <span class="close-modal">
+      &times;
+    </span>
+
+    <h3 id="modalName"></h3>
+
+    <p id="modalComment"></p>
+
+  </div>
+
+</div>
+{% endif %}
+<!-- =========================
+   script for our story transation
+========================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(
+    ".reveal-left, .reveal-right"
+  );
+
+  function revealOnScroll() {
+    reveals.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      const trigger = window.innerHeight * 0.95;
+
+      if (top < trigger) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+});
+</script>
+
+<!-- =========================
+   script for why choose us
+========================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(".reveal-up");
+
+  function revealOnScroll() {
+    reveals.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      const trigger = window.innerHeight * 1;
+
+      if (top < trigger) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+});
+</script>
+
+<!-- =========================
+   script for view menu
+========================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(
+    ".reveal-left, .reveal-right, .reveal-up"
+  );
+
+  function revealOnScroll() {
+    reveals.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      const trigger = window.innerHeight * 0.95;
+
+      if (top < trigger) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+});
+</script>
+
+<!-- =========================
+   script for Customer Review
+========================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const slider =
+    document.getElementById("googleReviewSlider");
+
+  if (slider) {
+
+    const next =
+      document.querySelector(".google-next");
+
+    const prev =
+      document.querySelector(".google-prev");
+
+    const cards =
+      document.querySelectorAll(".google-review-card");
+
+    function move(direction) {
+      const cardWidth =
+        cards[0].offsetWidth + 20;
+
+      slider.scrollBy({
+        left: direction * cardWidth * 5,
+        behavior: "smooth"
+      });
+    }
+
+    next.addEventListener("click", () => move(1));
+    prev.addEventListener("click", () => move(-1));
+  }
+
+  /* Read More Modal */
+
+  const modal =
+    document.getElementById("reviewModal");
+
+  const modalName =
+    document.getElementById("modalName");
+
+  const modalComment =
+    document.getElementById("modalComment");
+
+  const closeBtn =
+    document.querySelector(".close-modal");
+
+  document
+    .querySelectorAll(".read-more")
+    .forEach(btn => {
+
+      btn.addEventListener("click", () => {
+        modalName.textContent =
+          btn.dataset.name;
+
+        modalComment.textContent =
+          btn.dataset.comment;
+
+        modal.style.display = "flex";
+      });
+
+    });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+});
+</script>
 {% endblock %}

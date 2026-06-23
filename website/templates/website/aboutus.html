@@ -9,24 +9,25 @@
 {% endblock %}
 
 {% block body %}
+
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-content reveal-up">
 
     <h1>
-        {% if language == 'nl' %}
-            {{ about.title_nl }}
-        {% else %}
-            {{ about.title_eng }}
-        {% endif %}
+      {% if language == 'nl' %}
+        {{ about.title_nl }}
+      {% else %}
+        {{ about.title_eng }}
+      {% endif %}
     </h1>
 
     <p>
-        {% if language == 'nl' %}
-            {{ about.content_nl }}
-        {% else %}
-            {{ about.content_eng }}
-        {% endif %}
+      {% if language == 'nl' %}
+        {{ about.content_nl }}
+      {% else %}
+        {{ about.content_eng }}
+      {% endif %}
     </p>
 
   </div>
@@ -36,33 +37,33 @@
 <section class="section founder">
   <div class="grid">
 
-    <div class="image">
+    <div class="image reveal-left">
       <img src="{{ founder.image.url }}" alt="Founder">
     </div>
 
-    <div class="text">
+    <div class="text reveal-right">
 
       <h2>
         {% if language == 'nl' %}
-            {{ founder.title_nl }}
+          {{ founder.title_nl }}
         {% else %}
-            {{ founder.title_eng }}
+          {{ founder.title_eng }}
         {% endif %}
       </h2>
 
       <p>
         {% if language == 'nl' %}
-            {{ founder.content_nl|linebreaks }}
+          {{ founder.content_nl|linebreaks }}
         {% else %}
-            {{ founder.content_eng|linebreaks }}
+          {{ founder.content_eng|linebreaks }}
         {% endif %}
       </p>
 
       <p class="signature">
         {% if language == 'nl' %}
-            {{ founder.signature_nl }}
+          {{ founder.signature_nl }}
         {% else %}
-            {{ founder.signature_eng }}
+          {{ founder.signature_eng }}
         {% endif %}
       </p>
 
@@ -75,31 +76,55 @@
 <section class="section">
   <div class="grid">
 
-    <div class="text">
+    <div class="text reveal-left">
 
       <h2>
         {% if language == 'nl' %}
-            {{ who.title_nl }}
+          {{ who.title_nl }}
         {% else %}
-            {{ who.title_eng }}
+          {{ who.title_eng }}
         {% endif %}
       </h2>
 
       <p>
         {% if language == 'nl' %}
-            {{ who.content_nl|linebreaks }}
+          {{ who.content_nl|linebreaks }}
         {% else %}
-            {{ who.content_eng|linebreaks }}
+          {{ who.content_eng|linebreaks }}
         {% endif %}
       </p>
 
     </div>
 
-    <div class="image">
+    <div class="image reveal-right">
       <img src="{{ who.image.url }}" alt="Who We Are">
     </div>
 
   </div>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(
+    ".reveal-up, .reveal-left, .reveal-right"
+  );
+
+  function revealOnScroll() {
+    reveals.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      const trigger = window.innerHeight * 0.85;
+
+      if (top < trigger) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+});
+</script>
 {% endblock %}

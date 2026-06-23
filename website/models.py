@@ -166,3 +166,20 @@ class Value(models.Model):
 
     def __str__(self):
         return self.title_eng
+
+class GoogleReview(models.Model):
+    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0)
+    review_count = models.PositiveIntegerField(default=0)
+    review_url = models.URLField()
+
+    def __str__(self):
+        return f"{self.rating} ({self.review_count} reviews)"
+
+class CustomerReview(models.Model):
+    name = models.CharField(max_length=100)
+    rating = models.PositiveIntegerField(default=5)
+    comment = models.TextField()
+    image = models.ImageField(upload_to="reviews/", blank=True, null=True)
+
+    def __str__(self):
+        return self.name

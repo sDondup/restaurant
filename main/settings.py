@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-#t-^p-(r$zxh#_icjd92(*6^trbjv^sk_hg^jox^t%u=wp(6*!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "www.amabrugge.com",
+    "amabrugge.com",
+]
 
 # Application definition
 
@@ -38,7 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
+SITE_DOMAIN = "amabrugge.com"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
