@@ -17,7 +17,7 @@ def home(request):
     why_items = WhyChooseUs.objects.all()
     contact_info = Contact.objects.first()
     google_review = GoogleReview.objects.first()
-    customer_review = CustomerReview.objects.all()[:6]  # latest 6 reviews
+    customer_review = CustomerReview.objects.all()[:20]  # latest 6 reviews
 
     return render(request, 'website/index.html', {
         'language': language,

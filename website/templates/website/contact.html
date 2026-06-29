@@ -80,7 +80,6 @@
 
             <!-- Address -->
             <div class="info-item reveal-item">
-
                 <div class="icon-circle">
                     <i class="fas fa-location-dot"></i>
                 </div>
@@ -88,11 +87,8 @@
                 <div>
                     <h4>{% trans "Address" %}</h4>
 
-                    <p>
-                        {{ contact_info.location_text|default:"Ama Tibetan Restaurant, Bruges" }}
-                    </p>
+                    <p>{{ contact_info.display_address }}</p>
                 </div>
-
             </div>
 
             <!-- Social -->

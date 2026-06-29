@@ -85,6 +85,8 @@ class MenuCard(models.Model):
     def __str__(self):
         return f"{self.get_language_display()} - {self.title}"
 
+from django.utils.translation import get_language
+
 class Contact(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
@@ -97,16 +99,23 @@ class Contact(models.Model):
     whatsapp = models.URLField(blank=True)
     location = models.URLField(blank=True)
 
+    address_en = models.TextField()
+    address_nl = models.TextField()
+
     def __str__(self):
         return self.phone
 
     @property
     def display_hours(self):
-        from django.utils.translation import get_language
-
         if get_language() == "nl":
             return self.opening_hours_nl
         return self.opening_hours_en
+
+    @property
+    def display_address(self):
+        if get_language() == "nl":
+            return self.address_nl
+        return self.address_en
 
 class AboutUs(models.Model):
     title_eng = models.CharField(max_length=255)

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "www.amabrugge.com",
     "amabrugge.com",
+    "192.168.1.12",
 ]
 
 # Application definition
